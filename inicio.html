@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ecredit Personalizado - MP</title>
+    <title>Portal de pagos - DEMO</title>
 
     <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
 
         * {
             margin: 0;
@@ -15,61 +18,105 @@
             box-sizing: border-box;
         }
 
+        html,
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #fff;
-            color: #111;
+            min-height: 100%;
         }
 
-        /* =====================================
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #111111;
+        }
+
+
+        /* =====================================================
+           MARCA DEMO
+        ===================================================== */
+
+        .demo-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #333333;
+            color: #ffffff;
+
+            font-size: 12px;
+            font-weight: bold;
+
+            z-index: 9999;
+        }
+
+
+        /* =====================================================
            PAGINA
-        ===================================== */
+        ===================================================== */
 
         .page {
             min-height: 100vh;
 
             display: grid;
-            grid-template-columns: 2fr 1fr;
+
+            grid-template-columns:
+                minmax(0, 2fr)
+                minmax(350px, 1fr);
         }
 
 
-        /* =====================================
+        /* =====================================================
            PANEL IZQUIERDO
-        ===================================== */
+        ===================================================== */
 
         .main {
-            background: #fff;
-            padding: 68px 25px 50px;
+            background: #ffffff;
+
+            padding:
+                95px
+                25px
+                50px;
         }
 
         .content {
             width: 100%;
             max-width: 1060px;
-            margin: auto;
+
+            margin: 0 auto;
         }
 
 
-        /* =====================================
+        /* =====================================================
            TITULO
-        ===================================== */
+        ===================================================== */
 
         .title {
+            margin-bottom: 67px;
+
             text-align: center;
 
             font-size: 30px;
             font-weight: 700;
 
-            margin-bottom: 67px;
+            color: #111111;
         }
 
 
-        /* =====================================
-           CERRAR SESION
-        ===================================== */
+        /* =====================================================
+           LOGOUT
+        ===================================================== */
 
         .logout {
             display: inline-flex;
+
             align-items: center;
+
             gap: 8px;
 
             margin-bottom: 42px;
@@ -77,7 +124,10 @@
             color: #0785c3;
 
             font-size: 16px;
+
             text-decoration: none;
+
+            cursor: pointer;
         }
 
         .logout:hover {
@@ -85,57 +135,20 @@
         }
 
 
-        /* =====================================
-           ICONO LOGOUT
-        ===================================== */
-
         .logout-icon {
-            width: 19px;
-            height: 19px;
-
-            position: relative;
-        }
-
-        .logout-icon::before {
-            content: "";
-
-            position: absolute;
-
-            left: 2px;
-            top: 3px;
-
-            width: 10px;
-            height: 12px;
-
-            border: 2px solid #0785c3;
-            border-right: none;
-
-            border-radius: 2px 0 0 2px;
-        }
-
-        .logout-icon::after {
-            content: "→";
-
-            position: absolute;
-
-            left: 7px;
-            top: -4px;
-
-            font-size: 19px;
-            font-weight: bold;
-
-            background: white;
+            font-size: 20px;
         }
 
 
-        /* =====================================
+        /* =====================================================
            TABS
-        ===================================== */
+        ===================================================== */
 
         .tabs {
             display: flex;
 
-            border-bottom: 1px solid #e0e4e7;
+            border-bottom:
+                1px solid #e0e4e7;
 
             margin-bottom: 21px;
         }
@@ -143,16 +156,29 @@
         .tab {
             position: relative;
 
-            padding: 0 26px 13px;
+            border: none;
+
+            background: transparent;
+
+            padding:
+                0
+                26px
+                13px;
+
+            color: #9ba6b2;
 
             font-size: 15px;
             font-weight: 600;
 
-            color: #9ba6b2;
+            cursor: pointer;
+        }
+
+        .tab:first-child {
+            padding-left: 26px;
         }
 
         .tab.active {
-            color: #111;
+            color: #111111;
         }
 
         .tab.active::after {
@@ -170,14 +196,25 @@
         }
 
 
-        /* =====================================
-           TARJETA
-        ===================================== */
+        /* =====================================================
+           CONTENIDO DE TABS
+        ===================================================== */
+
+        .tab-content {
+            width: 100%;
+        }
+
+
+        /* =====================================================
+           TARJETA DEL CREDITO DEMO
+        ===================================================== */
 
         .credit-card {
             min-height: 113px;
 
-            padding: 32px 26px;
+            padding:
+                32px
+                26px;
 
             display: grid;
 
@@ -190,21 +227,26 @@
 
             gap: 30px;
 
-            border: 1px solid #d9dee3;
+            background: #ffffff;
+
+            border:
+                1px solid #d9dee3;
 
             border-radius: 14px;
 
             box-shadow:
-                0 2px 4px rgba(0, 0, 0, .12);
+                0 2px 4px
+                rgba(0, 0, 0, .12);
         }
 
 
-        /* =====================================
-           DATOS
-        ===================================== */
+        /* =====================================================
+           INFORMACION
+        ===================================================== */
 
         .info-row {
             display: flex;
+
             align-items: center;
 
             gap: 8px;
@@ -220,58 +262,62 @@
 
         .label {
             color: #66798b;
+
+            white-space: nowrap;
         }
 
         .value {
+            color: #111111;
+
             font-weight: 700;
         }
 
 
-        /* =====================================
+        /* =====================================================
            REFERENCIA
-        ===================================== */
+        ===================================================== */
 
         .reference {
             display: flex;
+
             align-items: center;
-            gap: 7px;
+
+            gap: 6px;
         }
 
 
-        /* =====================================
+        /* =====================================================
            OJITO
-        ===================================== */
+        ===================================================== */
 
         .eye-button {
-            width: 23px;
-            height: 23px;
+            width: 25px;
+            height: 25px;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
             border: none;
+
+            border-radius: 50%;
+
             background: transparent;
 
             cursor: pointer;
 
-            color: #222;
-
             font-size: 16px;
-
-            border-radius: 50%;
-
-            transition: background .2s;
         }
 
         .eye-button:hover {
-            background: #eef7fb;
+            background: #edf7fb;
         }
 
 
-        /* =====================================
-           MONTO
-        ===================================== */
+        /* =====================================================
+           SALDO
+        ===================================================== */
 
         .amount {
             min-width: 170px;
@@ -285,11 +331,12 @@
             align-items: center;
             justify-content: flex-end;
 
-            gap: 9px;
+            gap: 7px;
 
             margin-bottom: 8px;
 
             font-size: 16px;
+
             font-weight: 700;
         }
 
@@ -302,48 +349,52 @@
         }
 
 
-        /* =====================================
-           LAPIZ
-        ===================================== */
+        /* =====================================================
+           BOTON EDITAR
+        ===================================================== */
 
         .edit-button {
-            width: 24px;
-            height: 24px;
+            width: 25px;
+            height: 25px;
 
             display: flex;
+
             align-items: center;
             justify-content: center;
 
             border: none;
+
+            border-radius: 50%;
+
             background: transparent;
 
             cursor: pointer;
 
-            font-size: 16px;
-
-            border-radius: 50%;
+            font-size: 15px;
         }
 
         .edit-button:hover {
-            background: #eef7fb;
+            background: #edf7fb;
         }
 
 
-        /* =====================================
-           BOTON PAGAR
-        ===================================== */
+        /* =====================================================
+           BOTON PAGAR - DEMO
+        ===================================================== */
 
         .pay-button {
             height: 42px;
 
             border: none;
+
             border-radius: 8px;
 
             background: #1189c2;
 
-            color: white;
+            color: #ffffff;
 
             font-size: 15px;
+
             font-weight: 700;
 
             cursor: pointer;
@@ -354,27 +405,179 @@
         }
 
 
-        /* =====================================
+        /* =====================================================
+           HISTORIAL
+        ===================================================== */
+
+        .history-table {
+            width: 100%;
+
+            overflow: hidden;
+
+            border:
+                1px solid #d9dee3;
+
+            border-radius: 14px;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 1px 3px
+                rgba(0, 0, 0, .05);
+        }
+
+
+        .history-header,
+        .history-row {
+            display: grid;
+
+            grid-template-columns:
+                185px
+                210px
+                1fr
+                225px;
+
+            align-items: center;
+        }
+
+
+        /* CABECERA */
+
+        .history-header {
+            min-height: 52px;
+
+            padding:
+                0
+                22px;
+
+            background: #fafafa;
+
+            border-bottom:
+                1px solid #d9dee3;
+
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+
+        /* FILAS */
+
+        .history-row {
+            min-height: 62px;
+
+            padding:
+                0
+                22px;
+
+            border-bottom:
+                1px solid #e4e7ea;
+
+            font-size: 15px;
+        }
+
+        .history-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .history-row .total {
+            color: #66798b;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           ESTADOS
+        ===================================================== */
+
+        .status {
+            display: inline-block;
+
+            padding:
+                5px
+                12px;
+
+            border-radius: 4px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .status.approved {
+            background: #d9f8e5;
+
+            color: #07823d;
+        }
+
+        .status.declined {
+            background: #ffe0e0;
+
+            color: #c52222;
+        }
+
+
+        /* =====================================================
+           BOTON VER
+        ===================================================== */
+
+        .view-button {
+            width: 100%;
+
+            height: 32px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #1189c2;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .view-button:hover {
+            background: #087bad;
+        }
+
+
+        /* =====================================================
            PANEL DERECHO
-        ===================================== */
+        ===================================================== */
 
         .sidebar {
             min-height: 100vh;
 
-            background: #c5e8fa;
-
-            padding: 61px 36px 38px;
+            padding:
+                91px
+                36px
+                38px;
 
             display: flex;
+
             flex-direction: column;
+
+            background: #c5e8fa;
         }
+
 
         .sidebar-title {
             margin-bottom: 23px;
 
             font-size: 25px;
+
+            line-height: 1.2;
+
             font-weight: 700;
         }
+
 
         .sidebar-text {
             max-width: 510px;
@@ -387,45 +590,46 @@
         }
 
 
-        /* =====================================
-           FOOTER
-        ===================================== */
+        /* =====================================================
+           FOOTER SIDEBAR
+        ===================================================== */
 
         .sidebar-footer {
             margin-top: auto;
 
             display: flex;
+
             align-items: center;
+
             justify-content: flex-end;
 
             gap: 28px;
+
+            color: #10242d;
 
             font-size: 13px;
         }
 
         .made-by {
             display: flex;
+
             align-items: center;
+
             gap: 10px;
         }
 
-        .logo {
-            font-weight: 800;
+        .demo-logo {
             color: #28749d;
+
+            font-weight: 800;
         }
 
-        .logo-red {
-            color: #cc2f36;
-        }
-
-
-        /* =====================================
-           IDIOMA
-        ===================================== */
 
         .language {
             display: flex;
+
             align-items: center;
+
             gap: 9px;
         }
 
@@ -433,7 +637,9 @@
             width: 19px;
             height: 16px;
 
-            border: 1.8px solid #10242d;
+            border:
+                1.8px solid #10242d;
+
             border-radius: 5px;
         }
 
@@ -441,54 +647,65 @@
             width: 8px;
             height: 8px;
 
-            border-right: 1.8px solid #10242d;
-            border-bottom: 1.8px solid #10242d;
+            border-right:
+                1.8px solid #10242d;
+
+            border-bottom:
+                1.8px solid #10242d;
 
             transform: rotate(45deg);
         }
 
 
-        /* =====================================
+        /* =====================================================
            MODAL
-        ===================================== */
+        ===================================================== */
 
         .modal-overlay {
             position: fixed;
 
             inset: 0;
 
+            z-index: 5000;
+
             display: none;
 
             align-items: center;
             justify-content: center;
 
-            background: rgba(0, 0, 0, .45);
+            padding: 20px;
 
-            z-index: 1000;
+            background:
+                rgba(0, 0, 0, .45);
         }
 
         .modal-overlay.show {
             display: flex;
         }
 
+
         .modal {
             width: 420px;
-            max-width: calc(100% - 30px);
 
-            background: white;
-
-            border-radius: 14px;
+            max-width: 100%;
 
             padding: 28px;
 
+            background: #ffffff;
+
+            border-radius: 14px;
+
             box-shadow:
-                0 15px 50px rgba(0, 0, 0, .25);
+                0 15px 50px
+                rgba(0, 0, 0, .25);
         }
+
 
         .modal-header {
             display: flex;
 
             align-items: center;
+
             justify-content: space-between;
 
             margin-bottom: 25px;
@@ -496,14 +713,17 @@
 
         .modal-title {
             font-size: 21px;
+
             font-weight: 700;
         }
 
-        .close {
+
+        .close-button {
             width: 32px;
             height: 32px;
 
             border: none;
+
             border-radius: 50%;
 
             background: #f1f3f5;
@@ -513,32 +733,37 @@
             cursor: pointer;
         }
 
-        .close:hover {
+        .close-button:hover {
             background: #e3e6e8;
         }
 
 
-        /* =====================================
-           DATOS CLIENTE
-        ===================================== */
+        /* =====================================================
+           DATOS CLIENTE DEMO
+        ===================================================== */
 
         .client-data {
             display: flex;
+
             flex-direction: column;
 
             gap: 15px;
         }
 
+
         .client-row {
             display: flex;
+
             flex-direction: column;
 
             gap: 5px;
 
             padding-bottom: 13px;
 
-            border-bottom: 1px solid #eeeeee;
+            border-bottom:
+                1px solid #eeeeee;
         }
+
 
         .client-label {
             color: #788693;
@@ -546,32 +771,29 @@
             font-size: 13px;
         }
 
+
         .client-value {
             font-size: 16px;
+
             font-weight: 600;
         }
 
 
-        /* =====================================
-           EDITAR SALDO
-        ===================================== */
-
-        .edit-balance {
-            display: none;
-        }
-
-        .edit-balance.show {
-            display: block;
-        }
+        /* =====================================================
+           INPUT SALDO
+        ===================================================== */
 
         .balance-input {
             width: 100%;
 
             height: 45px;
 
-            padding: 0 14px;
+            padding:
+                0
+                14px;
 
-            border: 1px solid #cbd5dc;
+            border:
+                1px solid #cbd5dc;
 
             border-radius: 8px;
 
@@ -584,8 +806,14 @@
             border-color: #0785c3;
 
             box-shadow:
-                0 0 0 2px rgba(7, 133, 195, .12);
+                0 0 0 2px
+                rgba(7, 133, 195, .12);
         }
+
+
+        /* =====================================================
+           ACCIONES MODAL
+        ===================================================== */
 
         .modal-actions {
             display: flex;
@@ -597,10 +825,13 @@
             margin-top: 25px;
         }
 
-        .btn {
+
+        .modal-button {
             height: 40px;
 
-            padding: 0 20px;
+            padding:
+                0
+                20px;
 
             border: none;
 
@@ -611,24 +842,29 @@
             cursor: pointer;
         }
 
-        .btn-cancel {
+
+        .cancel-button {
             background: #eef1f3;
-            color: #333;
+
+            color: #333333;
         }
 
-        .btn-save {
+
+        .save-button {
             background: #1189c2;
-            color: white;
+
+            color: #ffffff;
         }
 
-        .btn-save:hover {
+
+        .save-button:hover {
             background: #087bad;
         }
 
 
-        /* =====================================
+        /* =====================================================
            RESPONSIVE
-        ===================================== */
+        ===================================================== */
 
         @media (max-width: 1000px) {
 
@@ -655,13 +891,31 @@
             .pay-button {
                 width: 100%;
             }
+
+        }
+
+
+        @media (max-width: 750px) {
+
+            .history-table {
+                overflow-x: auto;
+            }
+
+            .history-header,
+            .history-row {
+                min-width: 750px;
+            }
+
         }
 
 
         @media (max-width: 600px) {
 
             .main {
-                padding: 40px 16px;
+                padding:
+                    75px
+                    16px
+                    40px;
             }
 
             .title {
@@ -692,11 +946,16 @@
             .sidebar {
                 min-height: 350px;
 
-                padding: 40px 24px;
+                padding:
+                    50px
+                    24px
+                    40px;
             }
 
             .sidebar-footer {
                 justify-content: space-between;
+
+                gap: 12px;
             }
 
         }
@@ -708,157 +967,501 @@
 <body>
 
 
-    <!-- =====================================
+    <!-- =====================================================
+         AVISO DEMO
+    ===================================================== -->
+
+    <div class="demo-banner">
+        DEMO — DATOS FICTICIOS — NO ES UN PORTAL FINANCIERO REAL
+    </div>
+
+
+
+    <!-- =====================================================
          PAGINA
-    ===================================== -->
+    ===================================================== -->
 
     <div class="page">
 
 
-        <!-- =================================
-             PANEL IZQUIERDO
-        ================================== -->
+        <!-- =================================================
+             PANEL PRINCIPAL
+        ================================================= -->
 
         <main class="main">
 
             <div class="content">
 
 
+                <!-- TITULO -->
+
                 <h1 class="title">
-                    Ecredit Personalizado - MP
+                    Portal de pagos - DEMO
                 </h1>
 
 
                 <!-- CERRAR SESION -->
 
-                <a href="#" class="logout">
+                <a
+                    href="#"
+                    class="logout"
+                    onclick="cerrarDemo(event)">
 
-                    <span class="logout-icon"></span>
+                    <span class="logout-icon">
+                        ⇥
+                    </span>
 
                     Cerrar sesión
 
                 </a>
 
 
-                <!-- TABS -->
+                <!-- =================================================
+                     TABS
+                ================================================= -->
 
                 <div class="tabs">
 
-                    <div class="tab active">
-                        Registros relacionados
-                    </div>
 
-                    <div class="tab">
+                    <button
+                        id="tabRegistros"
+                        class="tab active"
+                        onclick="mostrarRegistros()">
+
+                        Registros relacionados
+
+                    </button>
+
+
+                    <button
+                        id="tabHistorial"
+                        class="tab"
+                        onclick="mostrarHistorial()">
+
                         Historial de pago
-                    </div>
+
+                    </button>
 
                 </div>
 
 
-                <!-- =================================
-                     TARJETA
-                ================================== -->
 
-                <section class="credit-card">
+                <!-- =================================================
+                     REGISTROS
+                ================================================= -->
 
-
-                    <!-- INFORMACION -->
-
-                    <div class="credit-info">
+                <section
+                    id="registros"
+                    class="tab-content">
 
 
-                        <!-- REFERENCIA -->
-
-                        <div class="info-row">
-
-                            <span class="label">
-                                Referencia
-                            </span>
+                    <div class="credit-card">
 
 
-                            <span class="value reference">
+                        <!-- INFORMACION -->
 
-                                402026430
+                        <div>
 
 
-                                <!-- OJITO -->
+                            <div class="info-row">
+
+                                <span class="label">
+                                    Referencia
+                                </span>
+
+
+                                <span class="value reference">
+
+                                    DEMO-402026430
+
+
+                                    <button
+                                        class="eye-button"
+                                        onclick="mostrarCliente()"
+                                        title="Ver datos">
+
+                                        👁️
+
+                                    </button>
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="info-row">
+
+                                <span class="label">
+                                    Descripción
+                                </span>
+
+                                <span class="value">
+                                    Registro de demostración
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- SALDO -->
+
+                        <div class="amount">
+
+
+                            <div class="amount-main">
+
+                                <span id="saldo">
+                                    COP 188,382
+                                </span>
+
 
                                 <button
-                                    class="eye-button"
-                                    onclick="mostrarCliente()"
-                                    title="Ver datos del cliente">
+                                    class="edit-button"
+                                    onclick="editarSaldo()"
+                                    title="Editar saldo">
 
-                                    👁
+                                    ✏️
 
                                 </button>
 
-                            </span>
+                            </div>
+
+
+                            <div class="minimum">
+                                Mínimo demo&nbsp;&nbsp; COP 2,000
+                            </div>
 
                         </div>
 
 
-                        <!-- DESCRIPCION -->
 
-                        <div class="info-row">
+                        <!-- BOTON -->
 
-                            <span class="label">
-                                Descripción
-                            </span>
+                        <button
+                            class="pay-button"
+                            onclick="pagarDemo()">
 
-                            <span class="value">
-                                Pago de crédito 402026430
-                            </span>
+                            Pagar
 
-                        </div>
+                        </button>
 
                     </div>
 
+                </section>
 
-                    <!-- =================================
-                         SALDO
-                    ================================== -->
 
-                    <div class="amount">
 
-                        <div class="amount-main">
+                <!-- =================================================
+                     HISTORIAL
+                ================================================= -->
 
-                            <span id="saldo">
+                <section
+                    id="historial"
+                    class="tab-content"
+                    style="display:none;">
+
+
+                    <div class="history-table">
+
+
+                        <!-- CABECERA -->
+
+                        <div class="history-header">
+
+                            <div>
+                                Referencia
+                            </div>
+
+                            <div>
+                                Estado
+                            </div>
+
+                            <div>
+                                Total
+                            </div>
+
+                            <div>
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- FILA 1 -->
+
+                        <div class="history-row">
+
+                            <div>
+                                DEMO-402026430
+                            </div>
+
+                            <div>
+
+                                <span class="status declined">
+                                    Declinado
+                                </span>
+
+                            </div>
+
+                            <div class="total">
                                 COP 188,382
-                            </span>
+                            </div>
+
+                            <div>
+
+                                <button
+                                    class="view-button"
+                                    onclick="verPago(
+                                        '188,382',
+                                        'Declinado'
+                                    )">
+
+                                    Ver
+
+                                </button>
+
+                            </div>
+
+                        </div>
 
 
-                            <!-- LAPIZ -->
 
-                            <button
-                                class="edit-button"
-                                onclick="editarSaldo()"
-                                title="Editar saldo">
+                        <!-- FILA 2 -->
 
-                                ✏️
+                        <div class="history-row">
 
-                            </button>
+                            <div>
+                                DEMO-402026430
+                            </div>
+
+                            <div>
+
+                                <span class="status approved">
+                                    Aprobado
+                                </span>
+
+                            </div>
+
+                            <div class="total">
+                                COP 199,972
+                            </div>
+
+                            <div>
+
+                                <button
+                                    class="view-button"
+                                    onclick="verPago(
+                                        '199,972',
+                                        'Aprobado'
+                                    )">
+
+                                    Ver
+
+                                </button>
+
+                            </div>
 
                         </div>
 
-                        <div class="minimum">
 
-                            Pago mínimo&nbsp;&nbsp;
-                            COP 2,000
+
+                        <!-- FILA 3 -->
+
+                        <div class="history-row">
+
+                            <div>
+                                DEMO-402026430
+                            </div>
+
+                            <div>
+
+                                <span class="status declined">
+                                    Declinado
+                                </span>
+
+                            </div>
+
+                            <div class="total">
+                                COP 199,972
+                            </div>
+
+                            <div>
+
+                                <button
+                                    class="view-button"
+                                    onclick="verPago(
+                                        '199,972',
+                                        'Declinado'
+                                    )">
+
+                                    Ver
+
+                                </button>
+
+                            </div>
 
                         </div>
+
+
+
+                        <!-- FILA 4 -->
+
+                        <div class="history-row">
+
+                            <div>
+                                DEMO-402026430
+                            </div>
+
+                            <div>
+
+                                <span class="status declined">
+                                    Declinado
+                                </span>
+
+                            </div>
+
+                            <div class="total">
+                                COP 188,518
+                            </div>
+
+                            <div>
+
+                                <button
+                                    class="view-button"
+                                    onclick="verPago(
+                                        '188,518',
+                                        'Declinado'
+                                    )">
+
+                                    Ver
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- FILA 5 -->
+
+                        <div class="history-row">
+
+                            <div>
+                                DEMO-402026430
+                            </div>
+
+                            <div>
+
+                                <span class="status approved">
+                                    Aprobado
+                                </span>
+
+                            </div>
+
+                            <div class="total">
+                                COP 188,653
+                            </div>
+
+                            <div>
+
+                                <button
+                                    class="view-button"
+                                    onclick="verPago(
+                                        '188,653',
+                                        'Aprobado'
+                                    )">
+
+                                    Ver
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- FILA 6 -->
+
+                        <div class="history-row">
+
+                            <div>
+                                DEMO-402026430
+                            </div>
+
+                            <div>
+
+                                <span class="status approved">
+                                    Aprobado
+                                </span>
+
+                            </div>
+
+                            <div class="total">
+                                COP 188,382
+                            </div>
+
+                            <div>
+
+                                <button
+                                    class="view-button"
+                                    onclick="verPago(
+                                        '188,382',
+                                        'Aprobado'
+                                    )">
+
+                                    Ver
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- FILA 7 -->
+
+                        <div class="history-row">
+
+                            <div>
+                                DEMO-402026430
+                            </div>
+
+                            <div>
+
+                                <span class="status declined">
+                                    Declinado
+                                </span>
+
+                            </div>
+
+                            <div class="total">
+                                COP 188,382
+                            </div>
+
+                            <div>
+
+                                <button
+                                    class="view-button"
+                                    onclick="verPago(
+                                        '188,382',
+                                        'Declinado'
+                                    )">
+
+                                    Ver
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
 
                     </div>
-
-
-                    <!-- PAGAR -->
-
-                    <button
-                        class="pay-button"
-                        onclick="pagar()">
-
-                        Pagar
-
-                    </button>
 
                 </section>
 
@@ -867,11 +1470,13 @@
         </main>
 
 
-        <!-- =================================
+
+        <!-- =================================================
              SIDEBAR
-        ================================== -->
+        ================================================= -->
 
         <aside class="sidebar">
+
 
             <div>
 
@@ -879,34 +1484,32 @@
                     Pagos electrónicos
                 </h2>
 
+
                 <p class="sidebar-text">
 
-                    Desde su casa, oficina o cualquier lugar,
-                    pague de forma segura a través de nuestro
-                    sistema de pago. Use nuestro servicio las
-                    24 horas y los 7 días de la semana
+                    Esta es una interfaz de demostración.
+                    No procesa pagos reales ni consulta
+                    información financiera.
 
                 </p>
 
             </div>
 
 
+
             <!-- FOOTER -->
 
             <footer class="sidebar-footer">
 
+
                 <div class="made-by">
 
                     <span>
-                        Hecho por
+                        Hecho para
                     </span>
 
-                    <span class="logo">
-                        AvalPay
-                    </span>
-
-                    <span class="logo">
-                        PL<span class="logo-red">Y</span>
+                    <span class="demo-logo">
+                        DEMO
                     </span>
 
                 </div>
@@ -924,6 +1527,7 @@
 
                 </div>
 
+
             </footer>
 
         </aside>
@@ -932,14 +1536,14 @@
 
 
 
-    <!-- =====================================
-         MODAL DATOS CLIENTE
-    ===================================== -->
+    <!-- =====================================================
+         MODAL DATOS DEL CLIENTE
+    ===================================================== -->
 
     <div
-        class="modal-overlay"
         id="clientModal"
-        onclick="cerrarModal(event)">
+        class="modal-overlay"
+        onclick="cerrarModalCliente(event)">
 
 
         <div
@@ -950,11 +1554,11 @@
             <div class="modal-header">
 
                 <h2 class="modal-title">
-                    Datos del cliente
+                    Datos del cliente — DEMO
                 </h2>
 
                 <button
-                    class="close"
+                    class="close-button"
                     onclick="cerrarCliente()">
 
                     ×
@@ -964,9 +1568,8 @@
             </div>
 
 
-            <!-- DATOS FICTICIOS -->
-
             <div class="client-data">
+
 
                 <div class="client-row">
 
@@ -1001,7 +1604,7 @@
                     </span>
 
                     <span class="client-value">
-                        402026430
+                        DEMO-402026430
                     </span>
 
                 </div>
@@ -1014,7 +1617,7 @@
                     </span>
 
                     <span class="client-value">
-                        Activo
+                        Registro de demostración
                     </span>
 
                 </div>
@@ -1027,14 +1630,14 @@
 
 
 
-    <!-- =====================================
+    <!-- =====================================================
          MODAL EDITAR SALDO
-    ===================================== -->
+    ===================================================== -->
 
     <div
-        class="modal-overlay"
         id="balanceModal"
-        onclick="cerrarSaldo(event)">
+        class="modal-overlay"
+        onclick="cerrarModalSaldo(event)">
 
 
         <div
@@ -1045,11 +1648,11 @@
             <div class="modal-header">
 
                 <h2 class="modal-title">
-                    Editar saldo
+                    Editar saldo — DEMO
                 </h2>
 
                 <button
-                    class="close"
+                    class="close-button"
                     onclick="cerrarSaldo()">
 
                     ×
@@ -1059,25 +1662,136 @@
             </div>
 
 
-            <div class="edit-balance show">
+            <label
+                class="client-label"
+                for="balanceInput">
 
-                <label
-                    class="client-label"
-                    for="balanceInput">
+                Nuevo saldo
 
-                    Nuevo saldo
+            </label>
 
-                </label>
 
-                <br><br>
+            <br><br>
 
-                <input
-                    id="balanceInput"
-                    class="balance-input"
-                    type="number"
-                    min="0"
-                    step="1"
-                    value="188382">
+
+            <input
+                id="balanceInput"
+                class="balance-input"
+                type="number"
+                min="0"
+                step="1"
+                value="188382">
+
+
+            <div class="modal-actions">
+
+
+                <button
+                    class="modal-button cancel-button"
+                    onclick="cerrarSaldo()">
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    class="modal-button save-button"
+                    onclick="guardarSaldo()">
+
+                    Guardar
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MODAL VER PAGO
+    ===================================================== -->
+
+    <div
+        id="paymentModal"
+        class="modal-overlay"
+        onclick="cerrarPago(event)">
+
+
+        <div
+            class="modal"
+            onclick="event.stopPropagation()">
+
+
+            <div class="modal-header">
+
+                <h2 class="modal-title">
+                    Detalle del registro
+                </h2>
+
+                <button
+                    class="close-button"
+                    onclick="cerrarPago()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <div class="client-data">
+
+
+                <div class="client-row">
+
+                    <span class="client-label">
+                        Referencia
+                    </span>
+
+                    <span class="client-value">
+                        DEMO-402026430
+                    </span>
+
+                </div>
+
+
+                <div class="client-row">
+
+                    <span class="client-label">
+                        Estado
+                    </span>
+
+                    <span
+                        id="paymentStatus"
+                        class="client-value">
+
+                        -
+
+                    </span>
+
+                </div>
+
+
+                <div class="client-row">
+
+                    <span class="client-label">
+                        Total
+                    </span>
+
+                    <span
+                        id="paymentTotal"
+                        class="client-value">
+
+                        -
+
+                    </span>
+
+                </div>
 
             </div>
 
@@ -1085,18 +1799,10 @@
             <div class="modal-actions">
 
                 <button
-                    class="btn btn-cancel"
-                    onclick="cerrarSaldo()">
+                    class="modal-button save-button"
+                    onclick="cerrarPago()">
 
-                    Cancelar
-
-                </button>
-
-                <button
-                    class="btn btn-save"
-                    onclick="guardarSaldo()">
-
-                    Guardar
+                    Cerrar
 
                 </button>
 
@@ -1108,46 +1814,100 @@
 
 
 
-    <!-- =====================================
+    <!-- =====================================================
          JAVASCRIPT
-    ===================================== -->
+    ===================================================== -->
 
     <script>
 
 
-        /* =====================================
-           MOSTRAR DATOS CLIENTE
-        ===================================== */
+        /* =================================================
+           CAMBIAR A REGISTROS
+        ================================================= */
+
+        function mostrarRegistros() {
+
+            document
+                .getElementById("registros")
+                .style.display = "block";
+
+
+            document
+                .getElementById("historial")
+                .style.display = "none";
+
+
+            document
+                .getElementById("tabRegistros")
+                .classList.add("active");
+
+
+            document
+                .getElementById("tabHistorial")
+                .classList.remove("active");
+
+        }
+
+
+
+        /* =================================================
+           CAMBIAR A HISTORIAL
+        ================================================= */
+
+        function mostrarHistorial() {
+
+            document
+                .getElementById("registros")
+                .style.display = "none";
+
+
+            document
+                .getElementById("historial")
+                .style.display = "block";
+
+
+            document
+                .getElementById("tabRegistros")
+                .classList.remove("active");
+
+
+            document
+                .getElementById("tabHistorial")
+                .classList.add("active");
+
+        }
+
+
+
+        /* =================================================
+           MOSTRAR CLIENTE
+        ================================================= */
 
         function mostrarCliente() {
 
-            const modal =
-                document.getElementById("clientModal");
-
-            modal.classList.add("show");
+            document
+                .getElementById("clientModal")
+                .classList.add("show");
 
         }
 
 
-        /* =====================================
-           CERRAR DATOS CLIENTE
-        ===================================== */
+
+        /* =================================================
+           CERRAR CLIENTE
+        ================================================= */
 
         function cerrarCliente() {
 
-            const modal =
-                document.getElementById("clientModal");
-
-            modal.classList.remove("show");
+            document
+                .getElementById("clientModal")
+                .classList.remove("show");
 
         }
 
 
-        /* =====================================
-           CERRAR MODAL CLIENTE
-        ===================================== */
 
-        function cerrarModal(event) {
+        function cerrarModalCliente(event) {
 
             if (
                 event.target.id === "clientModal"
@@ -1160,35 +1920,39 @@
         }
 
 
-        /* =====================================
+
+        /* =================================================
            EDITAR SALDO
-        ===================================== */
+        ================================================= */
 
         function editarSaldo() {
-
-            const modal =
-                document.getElementById("balanceModal");
 
             const saldo =
                 document
                     .getElementById("saldo")
                     .innerText
                     .replace("COP", "")
+                    .replace(/\./g, "")
                     .replace(/,/g, "")
                     .trim();
 
-            document.getElementById(
-                "balanceInput"
-            ).value = saldo;
 
-            modal.classList.add("show");
+            document
+                .getElementById("balanceInput")
+                .value = saldo;
+
+
+            document
+                .getElementById("balanceModal")
+                .classList.add("show");
 
         }
 
 
-        /* =====================================
+
+        /* =================================================
            GUARDAR SALDO
-        ===================================== */
+        ================================================= */
 
         function guardarSaldo() {
 
@@ -1197,17 +1961,18 @@
                     "balanceInput"
                 );
 
-            const nuevoSaldo =
+
+            const valor =
                 Number(input.value);
 
 
             if (
-                isNaN(nuevoSaldo) ||
-                nuevoSaldo < 0
+                !Number.isFinite(valor) ||
+                valor < 0
             ) {
 
                 alert(
-                    "Introduce un saldo válido."
+                    "Introduce un valor válido."
                 );
 
                 return;
@@ -1215,16 +1980,16 @@
             }
 
 
-            const saldoFormateado =
-                nuevoSaldo.toLocaleString(
+            const formateado =
+                valor.toLocaleString(
                     "es-CO"
                 );
 
 
-            document.getElementById(
-                "saldo"
-            ).innerText =
-                "COP " + saldoFormateado;
+            document
+                .getElementById("saldo")
+                .innerText =
+                "COP " + formateado;
 
 
             cerrarSaldo();
@@ -1232,50 +1997,123 @@
         }
 
 
-        /* =====================================
-           CERRAR MODAL SALDO
-        ===================================== */
 
-        function cerrarSaldo(event) {
+        /* =================================================
+           CERRAR SALDO
+        ================================================= */
 
-            const modal =
-                document.getElementById(
-                    "balanceModal"
-                );
+        function cerrarSaldo() {
 
-
-            if (
-                event &&
-                event.target &&
-                event.target.id !== "balanceModal"
-            ) {
-
-                return;
-
-            }
-
-
-            modal.classList.remove("show");
+            document
+                .getElementById("balanceModal")
+                .classList.remove("show");
 
         }
 
 
-        /* =====================================
-           BOTON PAGAR
-        ===================================== */
 
-        function pagar() {
+        function cerrarModalSaldo(event) {
+
+            if (
+                event.target.id === "balanceModal"
+            ) {
+
+                cerrarSaldo();
+
+            }
+
+        }
+
+
+
+        /* =================================================
+           VER PAGO
+        ================================================= */
+
+        function verPago(total, estado) {
+
+            document
+                .getElementById("paymentTotal")
+                .innerText =
+                "COP " + total;
+
+
+            document
+                .getElementById("paymentStatus")
+                .innerText =
+                estado;
+
+
+            document
+                .getElementById("paymentModal")
+                .classList.add("show");
+
+        }
+
+
+
+        /* =================================================
+           CERRAR PAGO
+        ================================================= */
+
+        function cerrarPago() {
+
+            document
+                .getElementById("paymentModal")
+                .classList.remove("show");
+
+        }
+
+
+
+        function cerrarPagoPorClick(event) {
+
+            if (
+                event.target.id === "paymentModal"
+            ) {
+
+                cerrarPago();
+
+            }
+
+        }
+
+
+
+        /* =================================================
+           BOTON PAGAR
+        ================================================= */
+
+        function pagarDemo() {
 
             alert(
-                "Demo: aquí puedes conectar posteriormente tu proceso de pago."
+                "Esta es una demostración. " +
+                "No se realiza ningún pago real."
             );
 
         }
 
 
-        /* =====================================
-           ESCAPE PARA CERRAR MODALES
-        ===================================== */
+
+        /* =================================================
+           CERRAR SESION DEMO
+        ================================================= */
+
+        function cerrarDemo(event) {
+
+            event.preventDefault();
+
+            alert(
+                "Sesión de demostración cerrada."
+            );
+
+        }
+
+
+
+        /* =================================================
+           ESC
+        ================================================= */
 
         document.addEventListener(
             "keydown",
@@ -1287,6 +2125,8 @@
 
                     cerrarSaldo();
 
+                    cerrarPago();
+
                 }
 
             }
@@ -1295,5 +2135,4 @@
     </script>
 
 </body>
-
 </html>
