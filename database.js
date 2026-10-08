@@ -1,25 +1,32 @@
 /*
- * js.database
+ * database.js
  * -----------------------------------------
  * Capa de datos para el Portal de Pagos DEMO
  *
  * IMPORTANTE:
- * Este archivo actualmente utiliza datos locales
- * de demostración.
+ * Este archivo utiliza datos locales de demostración.
+ * No procesa pagos reales ni consulta servidores.
  *
- * Más adelante podemos reemplazar las funciones
- * por consultas a tu base de datos/backend.
+ * API expuesta (window.Database):
+ *   - registros
+ *   - formatoCOP(valor)
+ *   - buscarPorReferencia(referencia)
+ *   - obtenerRegistroPrincipal()
+ *   - obtenerHistorial()
+ *   - obtenerDetalle(referencia)
+ *   - validarReferencia(referencia)
+ *   - actualizarMonto(referencia, nuevoMonto)
+ *   - simularPago(referencia, monto)
  * -----------------------------------------
  */
 
 const Database = (() => {
 
-    /*
-     * Base de datos DEMO
-     * ------------------
-     * Aquí están los registros que actualmente
-     * aparecen en el portal.
-     */
+    "use strict";
+
+    /* =========================================================
+       BASE DE DATOS DEMO
+       ========================================================= */
 
     const registros = [
         {
@@ -34,7 +41,6 @@ const Database = (() => {
             fechaGeneracion: "2026-10-07 19:00:00",
             fechaVencimiento: "2026-10-14 19:00:00"
         },
-
         {
             referencia: "DEMO-402026454",
             descripcion: "Registro de demostración",
@@ -47,9 +53,8 @@ const Database = (() => {
             fechaGeneracion: "2026-10-06 19:00:00",
             fechaVencimiento: "2026-10-13 19:00:00"
         },
-
         {
-            referencia: "402026453",
+            referencia: "DEMO-402026453",
             descripcion: "Registro de demostración",
             nombre: "Usuario de prueba",
             documento: "DOC-000002 (ficticio)",
@@ -60,7 +65,6 @@ const Database = (() => {
             fechaGeneracion: "2026-10-05 19:00:00",
             fechaVencimiento: "2026-10-12 19:00:00"
         },
-
         {
             referencia: "DEMO-402026452",
             descripcion: "Registro de demostración",
@@ -76,89 +80,82 @@ const Database = (() => {
     ];
 
 
-    /*
-     * -----------------------------------------
-     * FORMATO DE MONEDA
-     * -----------------------------------------
-     */
+    /* =========================================================
+       UTILIDADES
+       ========================================================= */
+
+    function normalizar(texto) {
+        return String(texto || "").trim().toUpperCase();
+    }
+
+    function esNumeroValido(valor) {
+        return Number.isFinite(Number(valor));
+    }
+
+
+    /* =========================================================
+       FORMATO DE MONEDA (COP)
+       ========================================================= */
 
     function formatoCOP(valor) {
-
         const numero = Number(valor);
 
         if (!Number.isFinite(numero)) {
             return "COP 0";
         }
 
-        return "COP " + new Intl.NumberFormat("es-CO").format(numero);
+        return "COP " + new Intl.NumberFormat("es-CO", {
+            maximumFractionDigits: 0
+        }).format(numero);
     }
 
 
-    /*
-     * -----------------------------------------
-     * BUSCAR POR REFERENCIA
-     * -----------------------------------------
-     */
+    /* =========================================================
+       BUSCAR POR REFERENCIA
+       ========================================================= */
 
     function buscarPorReferencia(referencia) {
+        if (!referencia) return null;
 
-        if (!referencia) {
-            return null;
-        }
+        const buscada = normalizar(referencia);
 
-        const referenciaNormalizada =
-            String(referencia).trim().toUpperCase();
-
-        return registros.find(registro =>
-            registro.referencia.toUpperCase() === referenciaNormalizada
+        return registros.find((registro) =>
+            normalizar(registro.referencia) === buscada
         ) || null;
     }
 
 
-    /*
-     * -----------------------------------------
-     * OBTENER REGISTRO PRINCIPAL
-     * -----------------------------------------
-     */
+    /* =========================================================
+       OBTENER REGISTRO PRINCIPAL (el primero)
+       ========================================================= */
 
     function obtenerRegistroPrincipal() {
-
         return registros[0] || null;
     }
 
 
-    /*
-     * -----------------------------------------
-     * OBTENER HISTORIAL
-     * -----------------------------------------
-     */
+    /* =========================================================
+       OBTENER HISTORIAL (todos los registros resumidos)
+       ========================================================= */
 
     function obtenerHistorial() {
-
-        return registros.map(registro => ({
+        return registros.map((registro) => ({
             referencia: registro.referencia,
             estado: registro.estado,
             total: registro.total,
             descripcion: registro.descripcion,
             fechaGeneracion: registro.fechaGeneracion
         }));
-
     }
 
 
-    /*
-     * -----------------------------------------
-     * OBTENER DETALLE
-     * -----------------------------------------
-     */
+    /* =========================================================
+       OBTENER DETALLE DE UN REGISTRO
+       ========================================================= */
 
     function obtenerDetalle(referencia) {
-
         const registro = buscarPorReferencia(referencia);
-
-        if (!registro) {
-            return null;
-        }
+        if (!registro) return null;
 
         return {
             referencia: registro.referencia,
@@ -172,43 +169,28 @@ const Database = (() => {
             fechaGeneracion: registro.fechaGeneracion,
             fechaVencimiento: registro.fechaVencimiento
         };
-
     }
 
 
-    /*
-     * -----------------------------------------
-     * VALIDAR REFERENCIA
-     * -----------------------------------------
-     */
+    /* =========================================================
+       VALIDAR REFERENCIA
+       ========================================================= */
 
     function validarReferencia(referencia) {
-
         const registro = buscarPorReferencia(referencia);
 
         return {
             encontrada: registro !== null,
             registro: registro
         };
-
     }
 
 
-    /*
-     * -----------------------------------------
-     * ACTUALIZAR MONTO
-     *
-     * Esta función existe únicamente para la
-     * demostración.
-     *
-     * En la versión conectada a backend,
-     * aquí NO se debería modificar directamente
-     * el navegador.
-     * -----------------------------------------
-     */
+    /* =========================================================
+       ACTUALIZAR MONTO (solo demo)
+       ========================================================= */
 
     function actualizarMonto(referencia, nuevoMonto) {
-
         const registro = buscarPorReferencia(referencia);
 
         if (!registro) {
@@ -220,7 +202,7 @@ const Database = (() => {
 
         const monto = Number(nuevoMonto);
 
-        if (!Number.isFinite(monto) || monto < 0) {
+        if (!esNumeroValido(monto) || monto < 0) {
             return {
                 correcto: false,
                 mensaje: "Monto inválido."
@@ -234,40 +216,30 @@ const Database = (() => {
             mensaje: "Monto actualizado en la demostración.",
             registro: registro
         };
-
     }
 
 
-    /*
-     * -----------------------------------------
-     * SIMULAR PAGO
-     *
-     * NO realiza ningún pago real.
-     * -----------------------------------------
-     */
+    /* =========================================================
+       SIMULAR PAGO (no realiza pagos reales)
+       ========================================================= */
 
     function simularPago(referencia, monto) {
-
         const registro = buscarPorReferencia(referencia);
 
         if (!registro) {
-
             return {
                 correcto: false,
                 mensaje: "Referencia no encontrada."
             };
-
         }
 
         const valor = Number(monto);
 
-        if (!Number.isFinite(valor) || valor <= 0) {
-
+        if (!esNumeroValido(valor) || valor <= 0) {
             return {
                 correcto: false,
                 mensaje: "Monto inválido."
             };
-
         }
 
         return {
@@ -278,36 +250,27 @@ const Database = (() => {
             monto: valor,
             estado: "SIMULADO"
         };
-
     }
 
 
-    /*
-     * -----------------------------------------
-     * API INTERNA
-     * -----------------------------------------
-     */
+    /* =========================================================
+       API PÚBLICA
+       ========================================================= */
 
     return {
-
         registros,
-
         formatoCOP,
-
         buscarPorReferencia,
-
         obtenerRegistroPrincipal,
-
         obtenerHistorial,
-
         obtenerDetalle,
-
         validarReferencia,
-
         actualizarMonto,
-
         simularPago
-
     };
 
 })();
+
+
+/* Exponer en window por si algún script lo usa directo */
+window.Database = Database;
