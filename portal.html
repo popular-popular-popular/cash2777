@@ -866,7 +866,7 @@
 
                                 <span class="value reference">
 
-                                    DEMO-402026455
+                                    <span id="referenciaTexto">—</span>
 
                                     <button
                                         class="eye-button"
@@ -904,8 +904,8 @@
                                     Descripción
                                 </span>
 
-                                <span>
-                                    Registro de demostración
+                                <span id="descripcionTexto">
+                                    —
                                 </span>
 
                             </div>
@@ -919,7 +919,7 @@
                             <div class="amount-main">
 
                                 <span id="saldo">
-                                    COP 88.246
+                                    COP 0
                                 </span>
 
                                 <button
@@ -941,7 +941,7 @@
                                 Pago mínimo
 
                                 <span id="minimoTexto">
-                                    COP 2.000
+                                    COP 0
                                 </span>
 
                             </div>
@@ -959,7 +959,7 @@
                                         id="montoInput"
                                         type="text"
                                         inputmode="numeric"
-                                        value="88.246"
+                                        value="0"
                                         aria-label="Monto ficticio">
 
                                     <span class="currency">
@@ -982,14 +982,14 @@
                                 <div class="editor-summary">
                                     Total
                                     <span id="editorTotal">
-                                        COP 88.246
+                                        COP 0
                                     </span>
                                 </div>
 
                                 <div class="editor-summary">
                                     Mínimo
                                     <span id="editorMinimo">
-                                        COP 2.000
+                                        COP 0
                                     </span>
                                 </div>
 
@@ -1052,113 +1052,7 @@
 
                         </div>
 
-                        <div class="history-row">
-
-                            <div>DEMO-402026455</div>
-
-                            <div>
-                                <span class="status declined">
-                                    Declinado
-                                </span>
-                            </div>
-
-                            <div class="total">
-                                COP 88.246
-                            </div>
-
-                            <div>
-                                <button
-                                    class="view-button"
-                                    type="button"
-                                    onclick="verPago('88.246', 'Declinado')">
-
-                                    Ver
-
-                                </button>
-                            </div>
-
-                        </div>
-
-                        <div class="history-row">
-
-                            <div>DEMO-402026454</div>
-
-                            <div>
-                                <span class="status approved">
-                                    Aprobado
-                                </span>
-                            </div>
-
-                            <div class="total">
-                                COP 91.200
-                            </div>
-
-                            <div>
-                                <button
-                                    class="view-button"
-                                    type="button"
-                                    onclick="verPago('91.200', 'Aprobado')">
-
-                                    Ver
-
-                                </button>
-                            </div>
-
-                        </div>
-
-                        <div class="history-row">
-
-                            <div>DEMO-402026453</div>
-
-                            <div>
-                                <span class="status declined">
-                                    Declinado
-                                </span>
-                            </div>
-
-                            <div class="total">
-                                COP 74.500
-                            </div>
-
-                            <div>
-                                <button
-                                    class="view-button"
-                                    type="button"
-                                    onclick="verPago('74.500', 'Declinado')">
-
-                                    Ver
-
-                                </button>
-                            </div>
-
-                        </div>
-
-                        <div class="history-row">
-
-                            <div>DEMO-402026452</div>
-
-                            <div>
-                                <span class="status approved">
-                                    Aprobado
-                                </span>
-                            </div>
-
-                            <div class="total">
-                                COP 80.000
-                            </div>
-
-                            <div>
-                                <button
-                                    class="view-button"
-                                    type="button"
-                                    onclick="verPago('80.000', 'Aprobado')">
-
-                                    Ver
-
-                                </button>
-                            </div>
-
-                        </div>
+                        <div id="historialFilas"></div>
 
                     </div>
 
@@ -1260,7 +1154,7 @@
                     <span
                         class="detail-value"
                         id="detalleReferencia">
-                        DEMO-402026455
+                        —
                     </span>
                 </div>
 
@@ -1269,28 +1163,34 @@
                     <span
                         class="detail-value"
                         id="detalleDescripcion">
-                        Registro de demostración
+                        —
                     </span>
                 </div>
 
                 <div class="detail-row">
                     <span class="detail-label">Nombre</span>
-                    <span class="detail-value">
-                        Usuario de prueba
+                    <span
+                        class="detail-value"
+                        id="detalleNombre">
+                        —
                     </span>
                 </div>
 
                 <div class="detail-row">
                     <span class="detail-label">Documento</span>
-                    <span class="detail-value">
-                        DOC-000000 (ficticio)
+                    <span
+                        class="detail-value"
+                        id="detalleDocumento">
+                        —
                     </span>
                 </div>
 
                 <div class="detail-row">
                     <span class="detail-label">Correo</span>
-                    <span class="detail-value">
-                        usuario.demo@example.com
+                    <span
+                        class="detail-value"
+                        id="detalleCorreo">
+                        —
                     </span>
                 </div>
 
@@ -1303,7 +1203,7 @@
                         class="detail-value"
                         id="detalleTotal">
 
-                        COP 88.246
+                        —
 
                     </span>
                 </div>
@@ -1313,8 +1213,10 @@
                         Fecha generación
                     </span>
 
-                    <span class="detail-value">
-                        2026-10-07 19:00:00
+                    <span
+                        class="detail-value"
+                        id="detalleGeneracion">
+                        —
                     </span>
                 </div>
 
@@ -1323,8 +1225,10 @@
                         Fecha de vencimiento
                     </span>
 
-                    <span class="detail-value">
-                        2026-10-14 19:00:00
+                    <span
+                        class="detail-value"
+                        id="detalleVencimiento">
+                        —
                     </span>
                 </div>
 
@@ -1339,278 +1243,426 @@
 
     </div>
 
+    <!-- =====================================================
+         BASE DE DATOS
+    ====================================================== -->
+
+    <script src="database.js"></script>
+
+    <!-- =====================================================
+         LÓGICA DEL PORTAL
+    ====================================================== -->
+
     <script>
-        "use strict";
+    "use strict";
 
-        const modal = document.getElementById("modalDetalle");
-        const toast = document.getElementById("toast");
-        const amountEditor = document.getElementById("amountEditor");
-        const amountButton = document.querySelector(".edit-button");
-        const amountInput = document.getElementById("montoInput");
+    const modal        = document.getElementById("modalDetalle");
+    const toast        = document.getElementById("toast");
+    const amountEditor = document.getElementById("amountEditor");
+    const amountButton = document.querySelector(".edit-button");
+    const amountInput  = document.getElementById("montoInput");
 
-        /* =========================
-           MODAL
-        ========================== */
+    let registroActual = null;
+    let montoActual    = 0;
+    let minimoActual   = 0;
 
-        function abrirModal() {
-            modal.classList.add("show");
-            document.body.style.overflow = "hidden";
+    /* =====================================================
+       UTILIDADES
+    ====================================================== */
 
-            modal.querySelector(".close-button").focus();
+    function formatoCOP(numero) {
+        const n = Number(numero);
+        if (!Number.isFinite(n)) return "COP 0";
+        return "COP " + new Intl.NumberFormat("es-CO", {
+            maximumFractionDigits: 0
+        }).format(n);
+    }
+
+    function textoSeguro(valor, alternativo = "No disponible") {
+        if (valor === undefined || valor === null || valor === "") {
+            return alternativo;
+        }
+        return String(valor);
+    }
+
+    function mostrarAviso(mensaje) {
+        toast.textContent = mensaje;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 4000);
+    }
+
+    /* =====================================================
+       CARGAR REGISTRO
+    ====================================================== */
+
+    function cargarRegistro() {
+
+        const parametros = new URLSearchParams(window.location.search);
+        const referenciaURL = parametros.get("referencia");
+        const referenciaGuardada = sessionStorage.getItem("referenciaActual");
+
+        const referencia = (referenciaURL || referenciaGuardada || "")
+            .trim()
+            .toUpperCase();
+
+        if (!referencia) {
+            mostrarAviso("No se recibió ninguna referencia.");
+            bloquearRegistro();
+            return;
         }
 
-        function mostrarDetalle() {
-            document.getElementById("detalleReferencia").textContent =
-                "DEMO-402026455";
-
-            document.getElementById("detalleDescripcion").textContent =
-                "Registro de demostración";
-
-            document.getElementById("detalleTotal").textContent =
-                document.getElementById("saldo").textContent;
-
-            abrirModal();
+        if (
+            typeof Database === "undefined" ||
+            typeof Database.obtenerDetalle !== "function"
+        ) {
+            mostrarAviso("No se pudo cargar la base de datos.");
+            bloquearRegistro();
+            return;
         }
 
-        function cerrarDetalle() {
-            modal.classList.remove("show");
-            document.body.style.overflow = "";
+        const registro = Database.obtenerDetalle(referencia);
+
+        if (!registro) {
+            mostrarAviso("La referencia no existe en la base de datos.");
+            bloquearRegistro();
+            return;
         }
 
-        function cerrarSiFondo(event) {
-            if (event.target === modal) {
-                cerrarDetalle();
+        registroActual = registro;
+
+        montoActual  = Number(registro.total  ?? 0);
+        minimoActual = Number(registro.minimo ?? 0);
+
+        if (!Number.isFinite(montoActual)  || montoActual  < 0) montoActual  = 0;
+        if (!Number.isFinite(minimoActual) || minimoActual < 0) minimoActual = 0;
+
+        /* Pintar datos principales */
+        document.getElementById("referenciaTexto").textContent =
+            textoSeguro(registro.referencia, referencia);
+
+        document.getElementById("descripcionTexto").textContent =
+            textoSeguro(registro.descripcion);
+
+        document.getElementById("saldo").textContent       = formatoCOP(montoActual);
+        document.getElementById("minimoTexto").textContent = formatoCOP(minimoActual);
+        document.getElementById("editorTotal").textContent = formatoCOP(montoActual);
+        document.getElementById("editorMinimo").textContent= formatoCOP(minimoActual);
+        document.getElementById("montoInput").value        = String(montoActual);
+
+        /* Cargar historial dinámico */
+        cargarHistorial();
+    }
+
+    function bloquearRegistro() {
+        document.getElementById("registros").hidden = true;
+        document.getElementById("tabRegistros").disabled = true;
+        document.getElementById("tabHistorial").disabled = true;
+        document.querySelector(".pay-button").disabled = true;
+    }
+
+    /* =====================================================
+       HISTORIAL
+    ====================================================== */
+
+    function cargarHistorial() {
+
+        const contenedor = document.getElementById("historialFilas");
+        if (!contenedor) return;
+
+        contenedor.replaceChildren();
+
+        const historial = (typeof Database !== "undefined" &&
+            typeof Database.obtenerHistorial === "function")
+            ? Database.obtenerHistorial()
+            : [];
+
+        if (!historial || historial.length === 0) {
+            const fila = document.createElement("div");
+            fila.className = "history-row";
+            fila.style.gridTemplateColumns = "1fr";
+            fila.textContent = "No hay pagos registrados.";
+            contenedor.appendChild(fila);
+            return;
+        }
+
+        historial.forEach((pago) => {
+
+            const fila = document.createElement("div");
+            fila.className = "history-row";
+
+            const referencia = document.createElement("div");
+            referencia.textContent = textoSeguro(pago.referencia);
+
+            const estadoContenedor = document.createElement("div");
+            const estado = document.createElement("span");
+            const estadoTexto = textoSeguro(pago.estado, "Pendiente");
+            estado.className = "status";
+
+            if (estadoTexto.toLowerCase() === "aprobado") {
+                estado.classList.add("approved");
+            } else if (estadoTexto.toLowerCase() === "declinado") {
+                estado.classList.add("declined");
             }
-        }
 
-        document.addEventListener("keydown", function (event) {
-            if (event.key === "Escape") {
-                cerrarDetalle();
-            }
+            estado.textContent = estadoTexto;
+            estadoContenedor.appendChild(estado);
+
+            const total = document.createElement("div");
+            const numero = Number(pago.total ?? 0);
+            total.className = "total";
+            total.textContent = formatoCOP(
+                Number.isFinite(numero) && numero >= 0 ? numero : 0
+            );
+
+            const detalle = document.createElement("div");
+            const boton = document.createElement("button");
+            boton.type = "button";
+            boton.className = "view-button";
+            boton.textContent = "Ver";
+            boton.addEventListener("click", () =>
+                verPago(pago.total, pago.estado, pago.referencia)
+            );
+            detalle.appendChild(boton);
+
+            fila.append(referencia, estadoContenedor, total, detalle);
+            contenedor.appendChild(fila);
+        });
+    }
+
+    /* =====================================================
+       MODAL
+    ====================================================== */
+
+    function abrirModal() {
+        modal.classList.add("show");
+        document.body.style.overflow = "hidden";
+        modal.querySelector(".close-button").focus();
+    }
+
+    function mostrarDetalle() {
+
+        if (!registroActual) return;
+
+        document.getElementById("detalleReferencia").textContent =
+            textoSeguro(registroActual.referencia);
+
+        document.getElementById("detalleDescripcion").textContent =
+            textoSeguro(registroActual.descripcion);
+
+        document.getElementById("detalleNombre").textContent =
+            textoSeguro(registroActual.nombre);
+
+        document.getElementById("detalleDocumento").textContent =
+            textoSeguro(registroActual.documento);
+
+        document.getElementById("detalleCorreo").textContent =
+            textoSeguro(registroActual.correo);
+
+        document.getElementById("detalleTotal").textContent =
+            formatoCOP(montoActual);
+
+        document.getElementById("detalleGeneracion").textContent =
+            textoSeguro(registroActual.fechaGeneracion);
+
+        document.getElementById("detalleVencimiento").textContent =
+            textoSeguro(registroActual.fechaVencimiento);
+
+        abrirModal();
+    }
+
+    function cerrarDetalle() {
+        modal.classList.remove("show");
+        document.body.style.overflow = "";
+    }
+
+    function cerrarSiFondo(event) {
+        if (event.target === modal) cerrarDetalle();
+    }
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") cerrarDetalle();
+    });
+
+    /* =====================================================
+       PESTAÑAS
+    ====================================================== */
+
+    function cambiarPestana(nombre) {
+        const esRegistros = nombre === "registros";
+
+        document.getElementById("registros").hidden = !esRegistros;
+        document.getElementById("historial").hidden = esRegistros;
+
+        document.getElementById("tabRegistros")
+            .classList.toggle("active", esRegistros);
+        document.getElementById("tabHistorial")
+            .classList.toggle("active", !esRegistros);
+
+        document.getElementById("tabRegistros")
+            .setAttribute("aria-selected", String(esRegistros));
+        document.getElementById("tabHistorial")
+            .setAttribute("aria-selected", String(!esRegistros));
+    }
+
+    document.getElementById("tabRegistros")
+        .addEventListener("click", () => cambiarPestana("registros"));
+    document.getElementById("tabHistorial")
+        .addEventListener("click", () => cambiarPestana("historial"));
+
+    /* =====================================================
+       LOGOUT
+    ====================================================== */
+
+    document.getElementById("logoutLink")
+        .addEventListener("click", function (event) {
+            event.preventDefault();
+            sessionStorage.removeItem("referenciaActual");
+            sessionStorage.removeItem("registroActual");
+            mostrarAviso("Sesión de demostración finalizada.");
         });
 
-        /* =========================
-           AVISOS
-        ========================== */
+    /* =====================================================
+       EDITOR DE MONTO
+    ====================================================== */
 
-        function mostrarAviso(mensaje) {
-            toast.textContent = mensaje;
-            toast.classList.add("show");
-        }
+    function alternarEditor(event) {
 
-        /* =========================
-           PESTAÑAS
-        ========================== */
+        event.stopPropagation();
 
-        function cambiarPestana(nombre) {
-            const esRegistros = nombre === "registros";
+        const abrir = amountEditor.hidden;
+        amountEditor.hidden = !abrir;
+        amountButton.setAttribute("aria-expanded", String(abrir));
 
-            document.getElementById("registros").hidden = !esRegistros;
-            document.getElementById("historial").hidden = esRegistros;
-
-            document
-                .getElementById("tabRegistros")
-                .classList.toggle("active", esRegistros);
-
-            document
-                .getElementById("tabHistorial")
-                .classList.toggle("active", !esRegistros);
-
-            document
-                .getElementById("tabRegistros")
-                .setAttribute("aria-selected", String(esRegistros));
-
-            document
-                .getElementById("tabHistorial")
-                .setAttribute("aria-selected", String(!esRegistros));
-        }
-
-        document
-            .getElementById("tabRegistros")
-            .addEventListener("click", function () {
-                cambiarPestana("registros");
-            });
-
-        document
-            .getElementById("tabHistorial")
-            .addEventListener("click", function () {
-                cambiarPestana("historial");
-            });
-
-        /* =========================
-           CERRAR SESIÓN DEMO
-        ========================== */
-
-        document
-            .getElementById("logoutLink")
-            .addEventListener("click", function (event) {
-                event.preventDefault();
-
-                mostrarAviso(
-                    "Acción simulada: esta demostración no tiene una sesión real."
-                );
-            });
-
-        /* =========================
-           EDITOR DE MONTO
-        ========================== */
-
-        function alternarEditor(event) {
-            event.stopPropagation();
-
-            const abrir = amountEditor.hidden;
-
-            amountEditor.hidden = !abrir;
-
-            amountButton.setAttribute(
-                "aria-expanded",
-                String(abrir)
-            );
-
-            if (abrir) {
-                const saldoActual =
-                    document
-                        .getElementById("saldo")
-                        .textContent
-                        .replace(/[^0-9]/g, "");
-
-                amountInput.value = saldoActual;
-
-                document.getElementById("editorTotal").textContent =
-                    document.getElementById("saldo").textContent;
-
-                document.getElementById("editorMinimo").textContent =
-                    document.getElementById("minimoTexto").textContent;
-
-                amountInput.focus();
-                amountInput.select();
-            }
-        }
-
-        function formatoCOP(numero) {
-            return "COP " +
-                new Intl.NumberFormat("es-CO").format(numero);
-        }
-
-        function valorIntroducido() {
-            const limpio =
-                amountInput.value.replace(/[^0-9]/g, "");
-
-            if (limpio === "") {
-                return NaN;
-            }
-
-            return Number(limpio);
-        }
-
-        function confirmarMonto() {
-            const numero = valorIntroducido();
-
-            if (!Number.isFinite(numero) || numero < 0) {
-                mostrarAviso(
-                    "Escribe un monto numérico válido para la demostración."
-                );
-
-                return;
-            }
-
-            const nuevoMonto = formatoCOP(numero);
-
-            document.getElementById("saldo").textContent =
-                nuevoMonto;
+        if (abrir) {
+            amountInput.value = String(montoActual);
 
             document.getElementById("editorTotal").textContent =
-                nuevoMonto;
-
-            amountEditor.hidden = true;
-
-            amountButton.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            mostrarAviso(
-                "Monto de demostración actualizado. No representa una deuda real."
-            );
-        }
-
-        function seleccionarMonto(tipo) {
-            const total =
-                Number(
-                    document
-                        .getElementById("saldo")
-                        .textContent
-                        .replace(/[^0-9]/g, "")
-                );
-
-            const minimo = 2000;
-
-            const numero =
-                tipo === "total"
-                    ? total
-                    : minimo;
-
-            amountInput.value =
-                new Intl.NumberFormat("es-CO").format(numero);
-
-            document.getElementById("editorTotal").textContent =
-                formatoCOP(total);
+                formatoCOP(montoActual);
 
             document.getElementById("editorMinimo").textContent =
-                formatoCOP(minimo);
+                formatoCOP(minimoActual);
+
+            amountInput.focus();
+            amountInput.select();
+        }
+    }
+
+    function valorIntroducido() {
+        const limpio = amountInput.value.replace(/[^0-9]/g, "");
+        return limpio === "" ? NaN : Number(limpio);
+    }
+
+    function confirmarMonto() {
+
+        const numero = valorIntroducido();
+
+        if (!Number.isSafeInteger(numero) || numero < 0) {
+            mostrarAviso("Escribe un monto válido.");
+            return;
         }
 
-        amountInput.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                confirmarMonto();
-            }
-        });
+        montoActual = numero;
 
-        /* =========================
-           CERRAR EDITOR
-        ========================== */
+        document.getElementById("saldo").textContent       = formatoCOP(montoActual);
+        document.getElementById("editorTotal").textContent = formatoCOP(montoActual);
 
-        document.addEventListener("click", function (event) {
-            if (
-                !amountEditor.hidden &&
-                !amountEditor.contains(event.target) &&
-                !event.target.closest(".edit-button")
-            ) {
-                amountEditor.hidden = true;
+        amountEditor.hidden = true;
+        amountButton.setAttribute("aria-expanded", "false");
 
-                amountButton.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-            }
-        });
+        mostrarAviso("Monto de demostración actualizado.");
+    }
 
-        /* =========================
-           SIMULAR PAGO
-        ========================== */
+    function seleccionarMonto(tipo) {
 
-        function pagarDemo() {
-            mostrarAviso(
-                "Simulación solamente: no se inició ni se procesó ningún pago real."
-            );
+        const numero = tipo === "total" ? montoActual : minimoActual;
+
+        amountInput.value = String(numero);
+
+        document.getElementById("editorTotal").textContent  = formatoCOP(montoActual);
+        document.getElementById("editorMinimo").textContent = formatoCOP(minimoActual);
+    }
+
+    amountInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") confirmarMonto();
+    });
+
+    document.addEventListener("click", function (event) {
+        if (
+            !amountEditor.hidden &&
+            !amountEditor.contains(event.target) &&
+            !event.target.closest(".edit-button")
+        ) {
+            amountEditor.hidden = true;
+            amountButton.setAttribute("aria-expanded", "false");
+        }
+    });
+
+    /* =====================================================
+       SIMULAR PAGO → REDIRIGE A pago.html
+    ====================================================== */
+
+    function pagarDemo() {
+
+        if (!registroActual) {
+            mostrarAviso("No hay un registro cargado.");
+            return;
         }
 
-        /* =========================
-           HISTORIAL
-        ========================== */
+        /* Guardar para la siguiente pantalla */
+        sessionStorage.setItem("pagoMonto", String(montoActual));
+        sessionStorage.setItem("pagoReferencia", registroActual.referencia);
+        sessionStorage.setItem("pagoDescripcion", registroActual.descripcion || "");
+        sessionStorage.setItem("pagoNombre", registroActual.nombre || "");
+        sessionStorage.setItem("pagoDocumento", registroActual.documento || "");
+        sessionStorage.setItem("pagoCorreo", registroActual.correo || "");
 
-        function verPago(total, estado) {
-            document.getElementById("detalleReferencia").textContent =
-                "DEMO-HISTORIAL";
+        window.location.href =
+            "pago.html?referencia=" +
+            encodeURIComponent(registroActual.referencia) +
+            "&monto=" + encodeURIComponent(montoActual);
+    }
 
-            document.getElementById("detalleDescripcion").textContent =
-                "Estado de demostración: " + estado;
+    /* =====================================================
+       HISTORIAL — VER DETALLE
+    ====================================================== */
 
-            document.getElementById("detalleTotal").textContent =
-                "COP " + total;
+    function verPago(total, estado, referencia) {
 
-            abrirModal();
-        }
+        document.getElementById("detalleReferencia").textContent =
+            textoSeguro(referencia, "DEMO-HISTORIAL");
+
+        document.getElementById("detalleDescripcion").textContent =
+            "Estado de demostración: " + textoSeguro(estado, "Pendiente");
+
+        document.getElementById("detalleNombre").textContent =
+            registroActual ? textoSeguro(registroActual.nombre) : "—";
+
+        document.getElementById("detalleDocumento").textContent =
+            registroActual ? textoSeguro(registroActual.documento) : "—";
+
+        document.getElementById("detalleCorreo").textContent =
+            registroActual ? textoSeguro(registroActual.correo) : "—";
+
+        const numero = Number(total ?? 0);
+
+        document.getElementById("detalleTotal").textContent =
+            formatoCOP(Number.isFinite(numero) && numero >= 0 ? numero : 0);
+
+        document.getElementById("detalleGeneracion").textContent =
+            registroActual ? textoSeguro(registroActual.fechaGeneracion) : "—";
+
+        document.getElementById("detalleVencimiento").textContent =
+            registroActual ? textoSeguro(registroActual.fechaVencimiento) : "—";
+
+        abrirModal();
+    }
+
+    /* =====================================================
+       INICIO
+    ====================================================== */
+
+    cargarRegistro();
+
     </script>
 
 </body>
