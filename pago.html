@@ -228,7 +228,7 @@ button,input,select{font:inherit}
   <div class="account">
     <div class="avatar"></div>
     <div>
-      <div class="email">usuario.demo@ejemplo.com</div>
+      <div class="email" id="cuentaEmail">usuario.demo@ejemplo.com</div>
       <div class="change" onclick="openModal('Cambiar de cuenta')">Cambiar de cuenta</div>
     </div>
   </div>
@@ -277,12 +277,12 @@ button,input,select{font:inherit}
     <div class="label">Datos del propietario</div>
     <div class="owner-box">
       <div class="owner-top">
-        <input value="USUARIO DEMO" readonly>
-        <input value="APELLIDO DEMO" readonly>
+        <input class="owner-nombre" value="USUARIO DEMO" readonly>
+        <input class="owner-apellido" value="APELLIDO DEMO" readonly>
       </div>
       <div class="owner-row">
         <div class="doc-type">CC　⌄</div>
-        <input value="0000000000" readonly>
+        <input class="owner-documento" value="0000000000" readonly>
       </div>
       <div class="owner-row">
         <div class="doc-type">🇨🇴　⌄</div>
@@ -292,7 +292,7 @@ button,input,select{font:inherit}
 
     <div class="actions">
       <button class="btn" onclick="showView('home')">←　Atrás</button>
-      <button class="btn primary" onclick="openModal('Pago demostrativo')">Pagar $188.382,00</button>
+      <button class="btn primary btn-pagar" onclick="openModal('Pago demostrativo')">Pagar $0,00</button>
     </div>
 
     <p class="privacy">Al continuar aceptas las políticas aplicables para esta <u>demostración</u>. No se realiza ninguna transacción.</p>
@@ -322,12 +322,12 @@ button,input,select{font:inherit}
     <div class="label">Datos del propietario — datos ficticios</div>
     <div class="owner-box">
       <div class="owner-top">
-        <input value="USUARIO DEMO" readonly>
-        <input value="APELLIDO DEMO" readonly>
+        <input class="owner-nombre" value="USUARIO DEMO" readonly>
+        <input class="owner-apellido" value="APELLIDO DEMO" readonly>
       </div>
       <div class="owner-row">
         <div class="doc-type">CC　⌄</div>
-        <input value="0000000000" readonly>
+        <input class="owner-documento" value="0000000000" readonly>
       </div>
       <div class="owner-row">
         <div class="doc-type">🇨🇴　⌄</div>
@@ -337,7 +337,7 @@ button,input,select{font:inherit}
 
     <div class="actions">
       <button class="btn" onclick="showView('home')">←　Atrás</button>
-      <button class="btn primary" onclick="openModal('Pago demostrativo')">Pagar $188.382,00</button>
+      <button class="btn primary btn-pagar" onclick="openModal('Pago demostrativo')">Pagar $0,00</button>
     </div>
 
     <p class="privacy">Esta maqueta no envía ni almacena números de tarjeta, CVV, documentos ni datos financieros.</p>
@@ -373,12 +373,12 @@ button,input,select{font:inherit}
     <div class="label">Datos del propietario — datos ficticios</div>
     <div class="owner-box">
       <div class="owner-top">
-        <input value="USUARIO DEMO" readonly>
-        <input value="APELLIDO DEMO" readonly>
+        <input class="owner-nombre" value="USUARIO DEMO" readonly>
+        <input class="owner-apellido" value="APELLIDO DEMO" readonly>
       </div>
       <div class="owner-row">
         <div class="doc-type">CC　⌄</div>
-        <input value="0000000000" readonly>
+        <input class="owner-documento" value="0000000000" readonly>
       </div>
       <div class="owner-row">
         <div class="doc-type">🇨🇴　⌄</div>
@@ -388,7 +388,7 @@ button,input,select{font:inherit}
 
     <div class="actions">
       <button class="btn" onclick="showView('home')">←　Atrás</button>
-      <button class="btn primary" onclick="openModal('Pago demostrativo')">Pagar $188.382,00</button>
+      <button class="btn primary btn-pagar" onclick="openModal('Pago demostrativo')">Pagar $0,00</button>
     </div>
 
     <p class="privacy">Esta maqueta es únicamente visual y no inicia una operación PSE real.</p>
@@ -403,10 +403,10 @@ button,input,select{font:inherit}
   <div class="summary">
     <div>
       <div class="small-title">Total a pagar</div>
-      <div class="amount">$188.382,00 <small>COP</small></div>
-      <div class="credit">Pago de crédito <strong>DEMO-402026430</strong></div>
+      <div class="amount" id="montoTexto">$0,00 <small>COP</small></div>
+      <div class="credit" id="creditTexto">Pago de crédito <strong>—</strong></div>
     </div>
-    <div class="ref-top">DEMO-S18254290</div>
+    <div class="ref-top" id="refTop">—</div>
   </div>
 
   <div class="details">
@@ -418,13 +418,13 @@ button,input,select{font:inherit}
 
     <div class="detail-grid">
       <div class="d-label">Referencia</div>
-      <div class="d-value">DEMO-402026430</div>
+      <div class="d-value" id="detalleReferencia">—</div>
 
       <div class="d-label">Fecha de solicitud</div>
-      <div class="d-value">08/10/2026 16:57</div>
+      <div class="d-value" id="detalleFecha">—</div>
 
       <div class="d-label">ref1</div>
-      <div class="d-value">Pago de crédito DEMO</div>
+      <div class="d-value" id="detalleRef1">—</div>
     </div>
   </div>
 
@@ -449,19 +449,135 @@ button,input,select{font:inherit}
 </div>
 
 <script>
+"use strict";
+
+/* ============================================================
+   CARGAR DATOS DESDE URL / sessionStorage
+   ============================================================ */
+
+let montoActual = 0;
+
+(function cargarDatosPago() {
+
+    const parametros = new URLSearchParams(window.location.search);
+
+    const referenciaURL = parametros.get("referencia");
+    const montoURL      = parametros.get("monto");
+
+    const referencia = (referenciaURL
+        || sessionStorage.getItem("pagoReferencia")
+        || sessionStorage.getItem("referenciaActual")
+        || "").trim();
+
+    const monto = Number(
+        montoURL
+        || sessionStorage.getItem("pagoMonto")
+        || 0
+    );
+
+    const nombre      = sessionStorage.getItem("pagoNombre")      || "Usuario";
+    const documento   = sessionStorage.getItem("pagoDocumento")   || "0000000000";
+    const correo      = sessionStorage.getItem("pagoCorreo")      || "usuario.demo@ejemplo.com";
+    const descripcion = sessionStorage.getItem("pagoDescripcion") || "Pago de crédito";
+
+    montoActual = Number.isFinite(monto) && monto > 0 ? monto : 0;
+
+    /* Formato COP con decimales */
+    const montoFormateado = "$ " + new Intl.NumberFormat("es-CO", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }).format(montoActual);
+
+    /* Correo arriba a la izquierda */
+    const cuentaEmail = document.getElementById("cuentaEmail");
+    if (cuentaEmail) cuentaEmail.textContent = correo;
+
+    /* Total en el panel derecho */
+    const montoTexto = document.getElementById("montoTexto");
+    if (montoTexto) {
+        montoTexto.innerHTML = montoFormateado + ' <small>COP</small>';
+    }
+
+    /* Línea "Pago de crédito XXX" */
+    const creditTexto = document.getElementById("creditTexto");
+    if (creditTexto) {
+        creditTexto.innerHTML =
+            descripcion + " <strong>" +
+            (referencia || "—") +
+            "</strong>";
+    }
+
+    /* ref-top */
+    const refTop = document.getElementById("refTop");
+    if (refTop) refTop.textContent = referencia || "—";
+
+    /* Detalle del pago */
+    const detalleReferencia = document.getElementById("detalleReferencia");
+    if (detalleReferencia) detalleReferencia.textContent = referencia || "—";
+
+    const detalleRef1 = document.getElementById("detalleRef1");
+    if (detalleRef1) detalleRef1.textContent = descripcion || "—";
+
+    /* Fecha actual de solicitud */
+    const detalleFecha = document.getElementById("detalleFecha");
+    if (detalleFecha) {
+        const ahora = new Date();
+        const dd = String(ahora.getDate()).padStart(2, "0");
+        const mm = String(ahora.getMonth() + 1).padStart(2, "0");
+        const yyyy = ahora.getFullYear();
+        const hh = String(ahora.getHours()).padStart(2, "0");
+        const mi = String(ahora.getMinutes()).padStart(2, "0");
+        detalleFecha.textContent = `${dd}/${mm}/${yyyy} ${hh}:${mi}`;
+    }
+
+    /* Nombre y apellido */
+    const partes = String(nombre).trim().split(/\s+/);
+    const nombrePila = partes.shift() || "Usuario";
+    const apellido   = partes.join(" ") || "Demo";
+
+    document.querySelectorAll(".owner-nombre").forEach((input) => {
+        input.value = nombrePila.toUpperCase();
+    });
+
+    document.querySelectorAll(".owner-apellido").forEach((input) => {
+        input.value = apellido.toUpperCase();
+    });
+
+    document.querySelectorAll(".owner-documento").forEach((input) => {
+        input.value = documento;
+    });
+
+    /* Actualizar todos los botones "Pagar $..." */
+    document.querySelectorAll(".btn-pagar").forEach((boton) => {
+        boton.textContent = "Pagar " + montoFormateado;
+    });
+
+})();
+
+
+/* ============================================================
+   NAVEGACIÓN ENTRE VISTAS
+   ============================================================ */
+
 function showView(name){
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.getElementById(name).classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const vista = document.getElementById(name);
+  if (vista) vista.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function selectBank(button){
-  document.querySelectorAll('.bank').forEach(b=>b.classList.remove('selected'));
-  button.classList.add('selected');
+  document.querySelectorAll('.bank').forEach(b => b.classList.remove('selected'));
+  if (button) button.classList.add('selected');
 }
 
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+
 function openModal(title){
-  document.getElementById('modalTitle').textContent=title;
+  document.getElementById('modalTitle').textContent = title;
   document.getElementById('modal').classList.add('show');
 }
 
@@ -469,8 +585,12 @@ function closeModal(){
   document.getElementById('modal').classList.remove('show');
 }
 
-document.getElementById('modal').addEventListener('click',function(e){
-  if(e.target===this) closeModal();
+document.getElementById('modal').addEventListener('click', function(e){
+  if (e.target === this) closeModal();
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') closeModal();
 });
 </script>
 </body>
