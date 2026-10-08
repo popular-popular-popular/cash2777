@@ -49,7 +49,7 @@ const Database = (() => {
         },
 
         {
-            referencia: "DEMO-402026453",
+            referencia: "402026453",
             descripcion: "Registro de demostración",
             nombre: "Usuario de prueba",
             documento: "DOC-000002 (ficticio)",
