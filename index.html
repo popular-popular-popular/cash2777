@@ -81,6 +81,31 @@
             box-shadow: 0 0 0 3px rgba(121, 185, 217, 0.18);
         }
 
+        /* =========================
+           ERROR
+        ========================== */
+
+        input.input-error {
+            border-color: #d9534f;
+            box-shadow: 0 0 0 3px rgba(217, 83, 79, 0.10);
+        }
+
+        .error-message {
+            display: none;
+            color: #c0392b;
+            font-size: 14px;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* =========================
+           PRIVACIDAD
+        ========================== */
+
         .privacy {
             color: #66788b;
             font-size: 16px;
@@ -91,6 +116,10 @@
         .privacy strong {
             color: #526477;
         }
+
+        /* =========================
+           BOTON
+        ========================== */
 
         .button-wrap {
             display: flex;
@@ -112,6 +141,11 @@
 
         button:hover {
             background: #65aaca;
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: wait;
         }
 
         /* =========================
@@ -292,7 +326,7 @@
                     Comience el proceso de pago, ingresando la siguiente información
                 </p>
 
-                <form>
+                <form id="referenciaForm">
 
                     <div class="field-group">
 
@@ -305,7 +339,15 @@
                             id="referencia"
                             name="referencia"
                             autocomplete="off"
+                            maxlength="50"
+                            required
                         >
+
+                        <div
+                            id="errorReferencia"
+                            class="error-message"
+                            role="alert"
+                        ></div>
 
                     </div>
 
@@ -319,7 +361,10 @@
 
                     <div class="button-wrap">
 
-                        <button type="button" onclick="ingresar()">
+                        <button
+                            type="submit"
+                            id="btnIngresar"
+                        >
                             Ingresar
                         </button>
 
@@ -333,7 +378,7 @@
 
 
         <!-- =========================
-             DERECHA
+             PANEL DERECHO
         ========================== -->
 
         <aside class="side">
@@ -401,33 +446,99 @@
     </div>
 
 
+    <!-- =====================================================
+         BASE DE DATOS
+         Debe estar en la misma carpeta que index.html
+    ====================================================== -->
+
+    <script src="database.js"></script>
+
+
+    <!-- =====================================================
+         LOGICA DEL INDEX
+    ====================================================== -->
+
     <script>
+    "use strict";
 
-        function ingresar() {
+    const formulario      = document.getElementById("referenciaForm");
+    const campoReferencia = document.getElementById("referencia");
+    const mensajeError    = document.getElementById("errorReferencia");
+    const botonIngresar   = document.getElementById("btnIngresar");
 
-            const referencia =
-                document.getElementById("referencia").value.trim();
+    /* =====================================================
+       INGRESAR
+    ====================================================== */
 
-            if (referencia === "") {
+    formulario.addEventListener("submit", function (event) {
 
-                alert("Por favor ingrese la referencia.");
+        event.preventDefault();
 
-                return;
-            }
+        const referencia = campoReferencia.value.trim().toUpperCase();
 
-            /*
-             * Aquí puedes colocar la URL a la que
-             * quieres enviar al usuario.
-             *
-             * Ejemplo:
-             *
-             * window.location.href =
-             * "pago.html?referencia=" +
-             * encodeURIComponent(referencia);
-             */
+        /* Limpiar errores */
+        campoReferencia.classList.remove("input-error");
+        mensajeError.classList.remove("show");
+        mensajeError.textContent = "";
 
-            alert("Referencia ingresada: " + referencia);
+        /* Validar campo vacío */
+        if (referencia === "") {
+            campoReferencia.classList.add("input-error");
+            mensajeError.textContent = "Por favor ingrese la referencia.";
+            mensajeError.classList.add("show");
+            campoReferencia.focus();
+            return;
         }
+
+        /* Validar que database.js esté cargado */
+        if (
+            typeof Database === "undefined" ||
+            typeof Database.buscarPorReferencia !== "function"
+        ) {
+            campoReferencia.classList.add("input-error");
+            mensajeError.textContent =
+                "No se pudo cargar la base de datos. Recargue la página.";
+            mensajeError.classList.add("show");
+            return;
+        }
+
+        /* Buscar en database.js */
+        const registro = Database.buscarPorReferencia(referencia);
+
+        /* Referencia no encontrada */
+        if (!registro) {
+            campoReferencia.classList.add("input-error");
+            mensajeError.textContent =
+                "La referencia ingresada no fue encontrada.";
+            mensajeError.classList.add("show");
+            campoReferencia.focus();
+            return;
+        }
+
+        /* Guardar datos para la siguiente pantalla */
+        sessionStorage.setItem("referenciaActual", registro.referencia);
+        sessionStorage.setItem("registroActual", JSON.stringify(registro));
+
+        /* Evitar doble clic */
+        botonIngresar.disabled = true;
+        botonIngresar.textContent = "Cargando...";
+
+        /* Ir al portal de pagos */
+        window.location.href =
+            "portal.html?referencia=" +
+            encodeURIComponent(registro.referencia);
+    });
+
+
+    /* =====================================================
+       LIMPIAR ERROR AL ESCRIBIR
+    ====================================================== */
+
+    campoReferencia.addEventListener("input", function () {
+        campoReferencia.classList.remove("input-error");
+        mensajeError.classList.remove("show");
+        mensajeError.textContent = "";
+    });
 
     </script>
 
