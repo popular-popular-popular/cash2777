@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Consulta los canales de pago y paga tus cuotas de forma rápida y segura.">
+  <title>Canales de Pago | Cash24</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #172644;
+      --gold: #d4b66e;
+      --gold-dark: #b7964f;
+      --text: #171717;
+      --muted: #687080;
+      --border: #e4e7ed;
+      --background: #ffffff;
+      --soft: #faf9f6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    body { font-family: "Poppins", sans-serif; color: var(--text); background: var(--background); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    .navbar {
+      position: sticky; top: 0; z-index: 100; width: 100%; min-height: 88px;
+      padding: 16px 6.5%; display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; background: rgba(255,255,255,.97); border-bottom: 1px solid #eee;
+      box-shadow: 0 3px 18px rgba(20,30,50,.035);
+    }
+    .logo { flex-shrink: 0; color: #1b337c; font-size: 35px; font-weight: 800; letter-spacing: -2px; line-height: 1; }
+    .logo span { font-size: 22px; letter-spacing: -1px; }
+    .logo small { color: var(--gold-dark); font-size: 14px; letter-spacing: -1px; }
+    .menu { display: flex; align-items: center; justify-content: center; gap: 25px; }
+    .menu a { font-size: 12px; font-weight: 500; white-space: nowrap; transition: color .2s ease; }
+    .menu a:hover { color: var(--gold-dark); }
+    .nav-actions { display: flex; align-items: center; gap: 14px; }
+    .languages { display: flex; align-items: center; padding: 4px; gap: 4px; border: 1px solid var(--border); border-radius: 30px; }
+    .languages span { padding: 5px 9px; border-radius: 22px; font-size: 11px; font-weight: 600; color: var(--muted); }
+    .languages .active { color: white; background: var(--navy); }
+    .ecredit { font-size: 18px; font-weight: 800; color: #087b69; white-space: nowrap; }
+    .btn {
+      min-height: 45px; padding: 12px 22px; display: inline-flex; align-items: center; justify-content: center;
+      gap: 9px; border-radius: 30px; font-family: inherit; font-size: 12px; font-weight: 600;
+      text-align: center; transition: transform .2s ease, background .2s ease; cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-gold { color: #fff; background: var(--gold); }
+    .btn-gold:hover { background: var(--gold-dark); }
+    .nav-btn { white-space: nowrap; }
+    .btn-outline { color: white; border: 1px solid rgba(255,255,255,.55); background: transparent; }
+    .btn-outline:hover { background: rgba(255,255,255,.12); }
+    .hero {
+      position: relative; isolation: isolate; min-height: 495px; display: flex; align-items: center;
+      padding: 70px 6.5%; overflow: hidden;
+      background: linear-gradient(90deg,rgba(20,23,23,.83) 0%,rgba(28,28,25,.67) 48%,rgba(24,25,23,.43) 100%),
+        linear-gradient(135deg,#7b776a,#514b3c 50%,#b5a98d);
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; opacity: .18;
+      background: radial-gradient(ellipse at 70% 30%,#f5e6bf 0,transparent 32%),
+        radial-gradient(ellipse at 85% 90%,#151515 0,transparent 35%);
+    }
+    .hero-content { width: 100%; max-width: 670px; color: #fff; }
+    .eyebrow { display: inline-block; margin-bottom: 12px; color: var(--gold); font-size: 13px; font-weight: 600; }
+    .hero h1 { max-width: 650px; margin-bottom: 20px; font-size: clamp(34px,4vw,52px); font-weight: 800; line-height: 1.13; letter-spacing: -1.6px; }
+    .hero-content > p { max-width: 610px; margin-bottom: 27px; color: #f1f1f1; font-size: 15px; line-height: 1.9; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 15px; }
+    .hero-buttons .btn { min-height: 50px; padding: 14px 25px; font-size: 13px; }
+    .security-note { display: flex; align-items: center; gap: 8px; margin-top: 25px; color: #eee; font-size: 11px; }
+    .security-note span { color: var(--gold); font-weight: 800; }
+    .section { max-width: 1350px; margin: 0 auto; padding: 75px 5.5%; }
+    .section-heading { max-width: 610px; margin: 0 auto 38px; text-align: center; }
+    .section-heading .eyebrow { margin-bottom: 5px; }
+    .section-heading h2 { margin-bottom: 10px; color: #090909; font-size: clamp(29px,3vw,38px); font-weight: 800; line-height: 1.25; letter-spacing: -1px; }
+    .section-heading p { color: #626875; font-size: 13px; line-height: 1.9; }
+    .brand-strip { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 25px; padding: 18px 15px 42px; }
+    .brand { display: flex; align-items: center; justify-content: center; min-height: 40px; font-size: 15px; font-weight: 600; white-space: nowrap; }
+    .brand-occidente { color: #15335f; }
+    .brand-occidente strong { margin-left: 4px; color: #079de0; }
+    .brand-efecty { color: #18305e; font-size: 19px; font-weight: 800; font-style: italic; }
+    .brand-giros { color: #344782; font-size: 18px; }
+    .brand-giros strong { margin-left: 4px; }
+    .brand-gana { width: 48px; height: 48px; min-height: 48px; border-radius: 50%; background: #f9d500; color: #fff; font-size: 11px; font-weight: 800; }
+    .brand-suchance { padding: 7px 11px; border-radius: 24px; background: #3156a0; color: #fff; font-size: 11px; }
+    .brand-aval { color: #334260; font-size: 18px; }
+    .brand-aval span { margin-left: 5px; color: #36a7e9; font-size: 30px; }
+    .payment-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px; }
+    .payment-card {
+      min-width: 0; padding: 27px 28px 20px; display: flex; flex-direction: column;
+      border: 1px solid var(--border); border-radius: 18px; background: #fff;
+      transition: box-shadow .25s ease, transform .25s ease;
+    }
+    .payment-card:hover { transform: translateY(-4px); box-shadow: 0 12px 35px rgba(24,38,68,.08); }
+    .card-top { display: grid; grid-template-columns: 75px minmax(0,1fr); align-items: start; gap: 18px; }
+    .provider-logo { min-height: 64px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 11px; font-weight: 700; }
+    .aval-logo { color: #315d9c; font-size: 13px; line-height: 1.3; }
+    .aval-logo small { font-size: 9px; }
+    .occidente-logo { color: #15335f; font-size: 10px; line-height: 1.5; }
+    .occidente-logo strong { color: #079de0; }
+    .efecty-logo { color: #233b75; font-size: 18px; font-style: italic; }
+    .gana-logo { width: 55px; height: 55px; min-height: 55px; border-radius: 50%; background: #f9d500; color: #fff; font-size: 12px; }
+    .card-title { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; margin-bottom: 8px; }
+    .card-title h3 { font-size: 15px; font-weight: 600; line-height: 1.5; }
+    .tag { display: inline-block; padding: 4px 9px; border-radius: 6px; font-size: 9px; font-weight: 600; white-space: nowrap; }
+    .tag.online { background: #f8efda; color: #a17a31; }
+    .tag.physical { background: #f0ece7; color: #655b50; }
+    .card-top p { color: #333944; font-size: 12px; line-height: 1.8; }
+    .features { display: grid; gap: 7px; margin: 19px 0 24px 93px; list-style: none; }
+    .features li { position: relative; padding-left: 23px; color: #303642; font-size: 12px; line-height: 1.6; }
+    .features li::before {
+      content: "✓"; position: absolute; top: 0; left: 0; width: 16px; height: 16px;
+      display: flex; align-items: center; justify-content: center; border-radius: 50%;
+      background: #faf6ed; color: var(--gold-dark); font-size: 10px; font-weight: 700;
+    }
+    .card-footer { min-height: 54px; margin-top: auto; padding-top: 15px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--border); }
+    .status { display: inline-flex; align-items: center; gap: 8px; color: #657080; font-size: 10px; }
+    .status i { width: 7px; height: 7px; border-radius: 50%; background: #58ae83; }
+    .agreement { color: #4d5665; font-size: 9px; }
+    .agreement strong { display: inline-block; margin-left: 7px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 7px; color: var(--navy); font-size: 10px; }
+    .country { color: #303642; font-size: 11px; }
+    .btn-navy { min-height: 39px; padding: 10px 16px; border-radius: 9px; background: var(--navy); color: white; font-size: 10px; }
+    .btn-navy:hover { background: #263c66; }
+    .help-banner { margin-top: 35px; padding: 25px 28px; display: flex; align-items: center; gap: 20px; border: 1px solid #eee7d9; border-radius: 16px; background: var(--soft); }
+    .help-icon { width: 43px; height: 43px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #f0e3c4; color: #85672e; font-size: 20px; font-weight: 700; }
+    .help-banner > div:nth-child(2) { flex: 1; }
+    .help-banner h3 { margin-bottom: 3px; font-size: 14px; }
+    .help-banner p { color: var(--muted); font-size: 11px; }
+    .help-banner .btn { flex-shrink: 0; }
+    .footer { padding: 28px 6.5%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; border-top: 1px solid var(--border); background: #fbfbfc; }
+    .footer-logo { font-size: 27px; }
+    .footer p, .footer > span { color: var(--muted); font-size: 10px; }
+
+    @media (max-width: 1250px) {
+      .navbar { padding: 15px 4%; gap: 15px; }
+      .menu { gap: 14px; }
+      .menu a { font-size: 10px; }
+      .nav-actions { gap: 8px; }
+      .nav-btn { padding: 11px 14px; font-size: 10px; }
+      .ecredit { font-size: 15px; }
+      .logo { font-size: 30px; }
+      .payment-card { padding: 22px 20px 17px; }
+      .card-top { grid-template-columns: 62px minmax(0,1fr); gap: 13px; }
+      .features { margin-left: 75px; }
+    }
+    @media (max-width: 950px) {
+      .navbar { flex-wrap: wrap; }
+      .menu { order: 3; width: 100%; overflow-x: auto; justify-content: flex-start; padding: 8px 0 3px; }
+      .menu a { font-size: 11px; }
+      .nav-actions { margin-left: auto; }
+      .hero { min-height: 440px; }
+      .section { padding: 55px 5%; }
+      .payment-grid { gap: 15px; }
+      .card-title h3 { font-size: 13px; }
+      .brand-strip { justify-content: center; gap: 25px 35px; }
+    }
+    @media (max-width: 650px) {
+      .navbar { min-height: 75px; padding: 15px 5%; }
+      .logo { font-size: 29px; }
+      .languages { display: none; }
+      .nav-btn { min-height: 37px; padding: 9px 13px; font-size: 9px; }
+      .ecredit { display: none; }
+      .menu { gap: 20px; }
+      .hero { min-height: 440px; padding: 55px 6%; }
+      .hero h1 { font-size: 37px; letter-spacing: -1px; }
+      .hero-content > p { font-size: 13px; line-height: 1.8; }
+      .hero-buttons { align-items: stretch; flex-direction: column; }
+      .hero-buttons .btn { width: 100%; }
+      .security-note { align-items: flex-start; font-size: 10px; }
+      .section { padding: 48px 5%; }
+      .section-heading { margin-bottom: 25px; }
+      .section-heading p { font-size: 12px; }
+      .brand-strip { padding-bottom: 28px; gap: 20px; }
+      .brand { font-size: 13px; }
+      .brand-giros { font-size: 15px; }
+      .brand-efecty { font-size: 16px; }
+      .payment-grid { grid-template-columns: 1fr; gap: 17px; }
+      .payment-card { padding: 22px 18px 17px; border-radius: 14px; }
+      .card-top { grid-template-columns: 58px minmax(0,1fr); gap: 12px; }
+      .card-title { align-items: flex-start; flex-direction: column; gap: 5px; }
+      .card-title h3 { font-size: 14px; }
+      .card-top p { font-size: 11px; }
+      .features { margin: 18px 0 22px 70px; }
+      .features li { font-size: 11px; }
+      .card-footer { gap: 10px; }
+      .help-banner { align-items: flex-start; flex-wrap: wrap; padding: 20px; gap: 13px; }
+      .help-banner > div:nth-child(2) { min-width: 180px; }
+      .help-banner .btn { width: 100%; }
+      .footer { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <a class="logo" href="#" aria-label="Cash24 inicio">cash<span>24</span><small>/7</small></a>
+    <nav class="menu" aria-label="Navegación principal">
+      <a href="#nosotros">Quiénes Somos</a>
+      <a href="#productos">Productos</a>
+      <a href="#cobertura">Cobertura</a>
+      <a href="#canales">Información de Interés</a>
+      <a href="#comercios">Portal Comercios</a>
+      <a href="#contacto">Trabaja con Nosotros</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="languages"><span class="active">ES</span><span>EN</span></div>
+      <a href="#canales" class="btn btn-gold nav-btn">PAGA TU CRÉDITO</a>
+      <a href="#ecredit" class="ecredit">E-CREDIT</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="nosotros">
+      <div class="hero-content">
+        <span class="eyebrow">Canales Oficiales</span>
+        <h1>Paga tus cuotas de forma rápida y segura</h1>
+        <p>Elige entre nuestra red de puntos de pago autorizados en todo Colombia o realiza tu pago en línea desde cualquier dispositivo.</p>
+        <div class="hero-buttons">
+          <a href="#canales" class="btn btn-gold"><span aria-hidden="true">▣</span> Pagar en Línea Ahora</a>
+          <a href="#canales" class="btn btn-outline">Ver Canales de Pago</a>
+        </div>
+        <div class="security-note"><span aria-hidden="true">✓</span> Canales oficiales · Pago seguro · Atención nacional</div>
+      </div>
+    </section>
+
+    <section class="payments section" id="canales">
+      <div class="section-heading">
+        <span class="eyebrow">Tus opciones</span>
+        <h2>Canales de Pago</h2>
+        <p>Todos nuestros canales son seguros y están disponibles para tu comodidad en todo el territorio nacional.</p>
+      </div>
+
+      <div class="brand-strip" aria-label="Red de canales de pago">
+        <div class="brand brand-occidente">Banco de <strong>Occidente</strong></div>
+        <div class="brand brand-efecty">efecty</div>
+        <div class="brand brand-giros">Super<strong>GIROS</strong></div>
+        <div class="brand brand-gana">Gana Gana</div>
+        <div class="brand brand-suchance">SuChance</div>
+        <div class="brand brand-aval">AvalPay <span>›</span></div>
+      </div>
+
+      <div class="payment-grid">
+        <article class="payment-card">
+          <div class="card-top">
+            <div class="provider-logo aval-logo">AvalPay<br><small>Center</small></div>
+            <div>
+              <div class="card-title"><h3>AvalPay - Pago en Línea</h3><span class="tag online">EN LÍNEA</span></div>
+              <p>Pago en línea con tarjetas de débito, crédito y billeteras digitales.</p>
+            </div>
+          </div>
+          <ul class="features">
+            <li>Disponible 24/7</li><li>Tarjetas y billeteras digitales</li><li>Pago en línea</li><li>Proceso seguro</li>
+          </ul>
+          <div class="card-footer"><span class="status"><i></i> Canal digital</span><a href="#" class="btn btn-navy">↗ Ir a Pagar</a></div>
+        </article>
+
+        <article class="payment-card">
+          <div class="card-top">
+            <div class="provider-logo occidente-logo">Banco de<br><strong>Occidente</strong></div>
+            <div>
+              <div class="card-title"><h3>Banco de Occidente</h3><span class="tag physical">PUNTO FÍSICO</span></div>
+              <p>Realiza tu pago en las oficinas del Banco de Occidente a nivel nacional.</p>
+            </div>
+          </div>
+          <ul class="features">
+            <li>Red nacional de oficinas</li><li>Consulta el convenio autorizado</li><li>Verifica los requisitos de pago</li><li>Atención presencial</li>
+          </ul>
+          <div class="card-footer"><span class="agreement">CONVENIO <strong>Por confirmar</strong></span><span class="country">◎ Colombia</span></div>
+        </article>
+
+        <article class="payment-card">
+          <div class="card-top">
+            <div class="provider-logo efecty-logo">efecty</div>
+            <div>
+              <div class="card-title"><h3>Efecty y SuperGIROS</h3><span class="tag physical">PUNTO FÍSICO</span></div>
+              <p>Consulta los puntos autorizados disponibles para realizar tu pago.</p>
+            </div>
+          </div>
+          <ul class="features">
+            <li>Amplia red de puntos</li><li>Atención presencial</li><li>Conserva tu comprobante</li><li>Consulta las condiciones del canal</li>
+          </ul>
+          <div class="card-footer"><span class="status"><i></i> Red de corresponsales</span><a href="#" class="btn btn-navy">Ver información ↗</a></div>
+        </article>
+
+        <article class="payment-card">
+          <div class="card-top">
+            <div class="provider-logo gana-logo">Gana<br>Gana</div>
+            <div>
+              <div class="card-title"><h3>Gana Gana y SuChance</h3><span class="tag physical">PUNTO FÍSICO</span></div>
+              <p>Encuentra información sobre puntos de pago y condiciones del servicio.</p>
+            </div>
+          </div>
+          <ul class="features">
+            <li>Consulta los puntos disponibles</li><li>Verifica tu referencia de pago</li><li>Solicita tu comprobante</li><li>Revisa los horarios del punto</li>
+          </ul>
+          <div class="card-footer"><span class="status"><i></i> Atención presencial</span><a href="#" class="btn btn-navy">Ver información ↗</a></div>
+        </article>
+      </div>
+
+      <div class="help-banner" id="contacto">
+        <div class="help-icon">?</div>
+        <div><h3>¿Necesitas ayuda con tu pago?</h3><p>Comunícate con los canales oficiales de atención para resolver tus dudas.</p></div>
+        <a href="#" class="btn btn-gold">Contactar</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="logo footer-logo" href="#">cash<span>24</span><small>/7</small></a>
+    <p>Canales de pago · Información para nuestros clientes</p>
+    <span>© 2026 Cash24. Todos los derechos reservados.</span>
+  </footer>
+</body>
+</html>
