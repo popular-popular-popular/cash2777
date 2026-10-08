@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,6 @@
     <title>Ecredit Personalizado - MP</title>
 
     <style>
-        /* ========================================
-           RESET
-        ======================================== */
 
         * {
             margin: 0;
@@ -17,25 +15,17 @@
             box-sizing: border-box;
         }
 
-        html,
-        body {
-            width: 100%;
-            min-height: 100%;
-        }
-
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #ffffff;
-            color: #111111;
+            background: #fff;
+            color: #111;
         }
 
-
-        /* ========================================
-           CONTENEDOR PRINCIPAL
-        ======================================== */
+        /* =====================================
+           PAGINA
+        ===================================== */
 
         .page {
-            width: 100%;
             min-height: 100vh;
 
             display: grid;
@@ -43,25 +33,25 @@
         }
 
 
-        /* ========================================
+        /* =====================================
            PANEL IZQUIERDO
-        ======================================== */
+        ===================================== */
 
         .main {
-            background: #ffffff;
+            background: #fff;
             padding: 68px 25px 50px;
         }
 
         .content {
             width: 100%;
             max-width: 1060px;
-            margin: 0 auto;
+            margin: auto;
         }
 
 
-        /* ========================================
+        /* =====================================
            TITULO
-        ======================================== */
+        ===================================== */
 
         .title {
             text-align: center;
@@ -70,28 +60,24 @@
             font-weight: 700;
 
             margin-bottom: 67px;
-
-            color: #111111;
         }
 
 
-        /* ========================================
+        /* =====================================
            CERRAR SESION
-        ======================================== */
+        ===================================== */
 
         .logout {
             display: inline-flex;
             align-items: center;
-
             gap: 8px;
 
             margin-bottom: 42px;
 
             color: #0785c3;
-            text-decoration: none;
 
             font-size: 16px;
-            font-weight: 500;
+            text-decoration: none;
         }
 
         .logout:hover {
@@ -99,15 +85,15 @@
         }
 
 
-        /* Icono cerrar sesión */
+        /* =====================================
+           ICONO LOGOUT
+        ===================================== */
 
         .logout-icon {
             width: 19px;
             height: 19px;
 
             position: relative;
-
-            display: inline-block;
         }
 
         .logout-icon::before {
@@ -138,15 +124,13 @@
             font-size: 19px;
             font-weight: bold;
 
-            line-height: 19px;
-
-            background: #ffffff;
+            background: white;
         }
 
 
-        /* ========================================
+        /* =====================================
            TABS
-        ======================================== */
+        ===================================== */
 
         .tabs {
             display: flex;
@@ -168,7 +152,7 @@
         }
 
         .tab.active {
-            color: #111111;
+            color: #111;
         }
 
         .tab.active::after {
@@ -186,12 +170,11 @@
         }
 
 
-        /* ========================================
+        /* =====================================
            TARJETA
-        ======================================== */
+        ===================================== */
 
         .credit-card {
-            width: 100%;
             min-height: 113px;
 
             padding: 32px 26px;
@@ -207,24 +190,18 @@
 
             gap: 30px;
 
-            background: #ffffff;
-
             border: 1px solid #d9dee3;
 
             border-radius: 14px;
 
             box-shadow:
-                0 2px 4px rgba(0, 0, 0, 0.12);
+                0 2px 4px rgba(0, 0, 0, .12);
         }
 
 
-        /* ========================================
-           INFORMACION DEL CREDITO
-        ======================================== */
-
-        .credit-info {
-            min-width: 0;
-        }
+        /* =====================================
+           DATOS
+        ===================================== */
 
         .info-row {
             display: flex;
@@ -243,67 +220,61 @@
 
         .label {
             color: #66798b;
-
-            white-space: nowrap;
         }
 
         .value {
-            color: #111111;
-
             font-weight: 700;
         }
 
 
-        /* ========================================
-           REFERENCIA + OJO
-        ======================================== */
+        /* =====================================
+           REFERENCIA
+        ===================================== */
 
         .reference {
-            display: inline-flex;
-
+            display: flex;
             align-items: center;
-
-            gap: 6px;
+            gap: 7px;
         }
 
-        .eye {
-            width: 17px;
-            height: 11px;
 
-            display: inline-block;
+        /* =====================================
+           OJITO
+        ===================================== */
 
-            position: relative;
+        .eye-button {
+            width: 23px;
+            height: 23px;
 
-            border: 1.8px solid #222222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-            border-radius: 80% 20% 80% 20%;
+            border: none;
+            background: transparent;
 
-            transform: rotate(-45deg);
-        }
+            cursor: pointer;
 
-        .eye::after {
-            content: "";
+            color: #222;
 
-            position: absolute;
-
-            width: 4px;
-            height: 4px;
-
-            top: 2px;
-            left: 5px;
-
-            background: #222222;
+            font-size: 16px;
 
             border-radius: 50%;
+
+            transition: background .2s;
+        }
+
+        .eye-button:hover {
+            background: #eef7fb;
         }
 
 
-        /* ========================================
+        /* =====================================
            MONTO
-        ======================================== */
+        ===================================== */
 
         .amount {
-            min-width: 150px;
+            min-width: 170px;
 
             text-align: right;
         }
@@ -314,12 +285,11 @@
             align-items: center;
             justify-content: flex-end;
 
-            gap: 8px;
+            gap: 9px;
 
             margin-bottom: 8px;
 
             font-size: 16px;
-
             font-weight: 700;
         }
 
@@ -332,44 +302,38 @@
         }
 
 
-        /* ========================================
-           ICONO EDITAR
-        ======================================== */
+        /* =====================================
+           LAPIZ
+        ===================================== */
 
-        .edit-icon {
-            width: 16px;
-            height: 16px;
+        .edit-button {
+            width: 24px;
+            height: 24px;
 
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-            position: relative;
+            border: none;
+            background: transparent;
 
-            transform: rotate(-45deg);
+            cursor: pointer;
+
+            font-size: 16px;
+
+            border-radius: 50%;
         }
 
-        .edit-icon::before {
-            content: "";
-
-            position: absolute;
-
-            width: 4px;
-            height: 15px;
-
-            top: 0;
-            left: 6px;
-
-            border: 2px solid #222222;
-
-            border-radius: 1px;
+        .edit-button:hover {
+            background: #eef7fb;
         }
 
 
-        /* ========================================
+        /* =====================================
            BOTON PAGAR
-        ======================================== */
+        ===================================== */
 
         .pay-button {
-            width: 100%;
             height: 42px;
 
             border: none;
@@ -377,30 +341,22 @@
 
             background: #1189c2;
 
-            color: #ffffff;
+            color: white;
 
             font-size: 15px;
             font-weight: 700;
 
             cursor: pointer;
-
-            transition:
-                background 0.2s ease,
-                transform 0.1s ease;
         }
 
         .pay-button:hover {
             background: #087bad;
         }
 
-        .pay-button:active {
-            transform: translateY(1px);
-        }
 
-
-        /* ========================================
+        /* =====================================
            PANEL DERECHO
-        ======================================== */
+        ===================================== */
 
         .sidebar {
             min-height: 100vh;
@@ -410,31 +366,15 @@
             padding: 61px 36px 38px;
 
             display: flex;
-
             flex-direction: column;
         }
-
-
-        /* ========================================
-           TITULO SIDEBAR
-        ======================================== */
 
         .sidebar-title {
             margin-bottom: 23px;
 
             font-size: 25px;
-
-            line-height: 1.2;
-
             font-weight: 700;
-
-            color: #111111;
         }
-
-
-        /* ========================================
-           TEXTO SIDEBAR
-        ======================================== */
 
         .sidebar-text {
             max-width: 510px;
@@ -444,50 +384,34 @@
             line-height: 1.7;
 
             text-align: justify;
-
-            color: #111111;
         }
 
 
-        /* ========================================
-           FOOTER SIDEBAR
-        ======================================== */
+        /* =====================================
+           FOOTER
+        ===================================== */
 
         .sidebar-footer {
             margin-top: auto;
 
             display: flex;
-
             align-items: center;
-
             justify-content: flex-end;
 
             gap: 28px;
 
-            color: #0e1d25;
-
             font-size: 13px;
         }
 
-
-        /* ========================================
-           LOGOS
-        ======================================== */
-
         .made-by {
             display: flex;
-
             align-items: center;
-
             gap: 10px;
         }
 
-        .logo-aval {
-            color: #28749d;
-
+        .logo {
             font-weight: 800;
-
-            letter-spacing: -1px;
+            color: #28749d;
         }
 
         .logo-red {
@@ -495,76 +419,216 @@
         }
 
 
-        /* ========================================
+        /* =====================================
            IDIOMA
-        ======================================== */
+        ===================================== */
 
         .language {
             display: flex;
-
             align-items: center;
-
             gap: 9px;
         }
-
-
-        /* ========================================
-           ICONO CHAT
-        ======================================== */
 
         .chat-icon {
             width: 19px;
             height: 16px;
 
-            position: relative;
-
             border: 1.8px solid #10242d;
-
             border-radius: 5px;
         }
-
-        .chat-icon::after {
-            content: "";
-
-            position: absolute;
-
-            right: 2px;
-            bottom: -4px;
-
-            width: 5px;
-            height: 5px;
-
-            border-left: 1.8px solid #10242d;
-            border-bottom: 1.8px solid #10242d;
-
-            background: #c5e8fa;
-
-            transform: skew(-20deg);
-        }
-
-
-        /* ========================================
-           FLECHA IDIOMA
-        ======================================== */
 
         .chevron {
             width: 8px;
             height: 8px;
 
-            margin-left: 3px;
-
             border-right: 1.8px solid #10242d;
             border-bottom: 1.8px solid #10242d;
 
-            transform:
-                rotate(45deg)
-                translateY(-2px);
+            transform: rotate(45deg);
         }
 
 
-        /* ========================================
-           RESPONSIVE TABLET
-        ======================================== */
+        /* =====================================
+           MODAL
+        ===================================== */
+
+        .modal-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(0, 0, 0, .45);
+
+            z-index: 1000;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            width: 420px;
+            max-width: calc(100% - 30px);
+
+            background: white;
+
+            border-radius: 14px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 15px 50px rgba(0, 0, 0, .25);
+        }
+
+        .modal-header {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+        .modal-title {
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .close {
+            width: 32px;
+            height: 32px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: #f1f3f5;
+
+            font-size: 20px;
+
+            cursor: pointer;
+        }
+
+        .close:hover {
+            background: #e3e6e8;
+        }
+
+
+        /* =====================================
+           DATOS CLIENTE
+        ===================================== */
+
+        .client-data {
+            display: flex;
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+        .client-row {
+            display: flex;
+            flex-direction: column;
+
+            gap: 5px;
+
+            padding-bottom: 13px;
+
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .client-label {
+            color: #788693;
+
+            font-size: 13px;
+        }
+
+        .client-value {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+
+        /* =====================================
+           EDITAR SALDO
+        ===================================== */
+
+        .edit-balance {
+            display: none;
+        }
+
+        .edit-balance.show {
+            display: block;
+        }
+
+        .balance-input {
+            width: 100%;
+
+            height: 45px;
+
+            padding: 0 14px;
+
+            border: 1px solid #cbd5dc;
+
+            border-radius: 8px;
+
+            outline: none;
+
+            font-size: 16px;
+        }
+
+        .balance-input:focus {
+            border-color: #0785c3;
+
+            box-shadow:
+                0 0 0 2px rgba(7, 133, 195, .12);
+        }
+
+        .modal-actions {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            margin-top: 25px;
+        }
+
+        .btn {
+            height: 40px;
+
+            padding: 0 20px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .btn-cancel {
+            background: #eef1f3;
+            color: #333;
+        }
+
+        .btn-save {
+            background: #1189c2;
+            color: white;
+        }
+
+        .btn-save:hover {
+            background: #087bad;
+        }
+
+
+        /* =====================================
+           RESPONSIVE
+        ===================================== */
 
         @media (max-width: 1000px) {
 
@@ -594,10 +658,6 @@
         }
 
 
-        /* ========================================
-           RESPONSIVE MOVIL
-        ======================================== */
-
         @media (max-width: 600px) {
 
             .main {
@@ -610,25 +670,19 @@
                 margin-bottom: 45px;
             }
 
-            .logout {
-                margin-bottom: 35px;
-            }
-
             .tabs {
                 overflow-x: auto;
             }
 
             .tab {
+                white-space: nowrap;
+
                 padding-left: 12px;
                 padding-right: 12px;
-
-                white-space: nowrap;
             }
 
             .credit-card {
                 padding: 24px 18px;
-
-                gap: 20px;
             }
 
             .info-row {
@@ -641,38 +695,34 @@
                 padding: 40px 24px;
             }
 
-            .sidebar-title {
-                font-size: 23px;
-            }
-
             .sidebar-footer {
                 justify-content: space-between;
-
-                gap: 12px;
             }
+
         }
+
     </style>
 </head>
 
+
 <body>
 
-    <!-- ========================================
-         PAGINA PRINCIPAL
-    ========================================= -->
+
+    <!-- =====================================
+         PAGINA
+    ===================================== -->
 
     <div class="page">
 
 
-        <!-- ====================================
+        <!-- =================================
              PANEL IZQUIERDO
-        ===================================== -->
+        ================================== -->
 
         <main class="main">
 
             <div class="content">
 
-
-                <!-- TITULO -->
 
                 <h1 class="title">
                     Ecredit Personalizado - MP
@@ -683,10 +733,7 @@
 
                 <a href="#" class="logout">
 
-                    <span
-                        class="logout-icon"
-                        aria-hidden="true">
-                    </span>
+                    <span class="logout-icon"></span>
 
                     Cerrar sesión
 
@@ -708,9 +755,9 @@
                 </div>
 
 
-                <!-- ====================================
-                     TARJETA DEL CREDITO
-                ===================================== -->
+                <!-- =================================
+                     TARJETA
+                ================================== -->
 
                 <section class="credit-card">
 
@@ -728,14 +775,22 @@
                                 Referencia
                             </span>
 
+
                             <span class="value reference">
 
                                 402026430
 
-                                <span
-                                    class="eye"
-                                    aria-hidden="true">
-                                </span>
+
+                                <!-- OJITO -->
+
+                                <button
+                                    class="eye-button"
+                                    onclick="mostrarCliente()"
+                                    title="Ver datos del cliente">
+
+                                    👁
+
+                                </button>
 
                             </span>
 
@@ -759,45 +814,51 @@
                     </div>
 
 
-                    <!-- ====================================
-                         MONTO
-                    ===================================== -->
+                    <!-- =================================
+                         SALDO
+                    ================================== -->
 
                     <div class="amount">
 
                         <div class="amount-main">
 
-                            <span>
+                            <span id="saldo">
                                 COP 188,382
                             </span>
 
-                            <span
-                                class="edit-icon"
-                                aria-hidden="true">
-                            </span>
+
+                            <!-- LAPIZ -->
+
+                            <button
+                                class="edit-button"
+                                onclick="editarSaldo()"
+                                title="Editar saldo">
+
+                                ✏️
+
+                            </button>
 
                         </div>
 
                         <div class="minimum">
-                            Pago mínimo&nbsp;&nbsp; COP 2,000
+
+                            Pago mínimo&nbsp;&nbsp;
+                            COP 2,000
+
                         </div>
 
                     </div>
 
 
-                    <!-- ====================================
-                         BOTON PAGAR
-                    ===================================== -->
+                    <!-- PAGAR -->
 
                     <button
-                        type="button"
                         class="pay-button"
                         onclick="pagar()">
 
                         Pagar
 
                     </button>
-
 
                 </section>
 
@@ -806,23 +867,17 @@
         </main>
 
 
-        <!-- ====================================
-             PANEL DERECHO
-        ===================================== -->
+        <!-- =================================
+             SIDEBAR
+        ================================== -->
 
         <aside class="sidebar">
-
-
-            <!-- TITULO -->
 
             <div>
 
                 <h2 class="sidebar-title">
                     Pagos electrónicos
                 </h2>
-
-
-                <!-- TEXTO -->
 
                 <p class="sidebar-text">
 
@@ -836,14 +891,9 @@
             </div>
 
 
-            <!-- ====================================
-                 FOOTER
-            ===================================== -->
+            <!-- FOOTER -->
 
             <footer class="sidebar-footer">
-
-
-                <!-- HECHO POR -->
 
                 <div class="made-by">
 
@@ -851,37 +901,26 @@
                         Hecho por
                     </span>
 
-                    <span class="logo-aval">
+                    <span class="logo">
                         AvalPay
                     </span>
 
-                    <span class="logo-aval">
-                        <span class="logo-red">
-                            V
-                        </span>
-                        AL
+                    <span class="logo">
+                        PL<span class="logo-red">Y</span>
                     </span>
 
                 </div>
 
 
-                <!-- IDIOMA -->
-
                 <div class="language">
 
-                    <span
-                        class="chat-icon"
-                        aria-hidden="true">
-                    </span>
+                    <span class="chat-icon"></span>
 
                     <span>
                         Español
                     </span>
 
-                    <span
-                        class="chevron"
-                        aria-hidden="true">
-                    </span>
+                    <span class="chevron"></span>
 
                 </div>
 
@@ -892,21 +931,369 @@
     </div>
 
 
-    <!-- ========================================
+
+    <!-- =====================================
+         MODAL DATOS CLIENTE
+    ===================================== -->
+
+    <div
+        class="modal-overlay"
+        id="clientModal"
+        onclick="cerrarModal(event)">
+
+
+        <div
+            class="modal"
+            onclick="event.stopPropagation()">
+
+
+            <div class="modal-header">
+
+                <h2 class="modal-title">
+                    Datos del cliente
+                </h2>
+
+                <button
+                    class="close"
+                    onclick="cerrarCliente()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <!-- DATOS FICTICIOS -->
+
+            <div class="client-data">
+
+                <div class="client-row">
+
+                    <span class="client-label">
+                        Nombre
+                    </span>
+
+                    <span class="client-value">
+                        Cliente de demostración
+                    </span>
+
+                </div>
+
+
+                <div class="client-row">
+
+                    <span class="client-label">
+                        Documento
+                    </span>
+
+                    <span class="client-value">
+                        0000000000
+                    </span>
+
+                </div>
+
+
+                <div class="client-row">
+
+                    <span class="client-label">
+                        Referencia
+                    </span>
+
+                    <span class="client-value">
+                        402026430
+                    </span>
+
+                </div>
+
+
+                <div class="client-row">
+
+                    <span class="client-label">
+                        Estado
+                    </span>
+
+                    <span class="client-value">
+                        Activo
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         MODAL EDITAR SALDO
+    ===================================== -->
+
+    <div
+        class="modal-overlay"
+        id="balanceModal"
+        onclick="cerrarSaldo(event)">
+
+
+        <div
+            class="modal"
+            onclick="event.stopPropagation()">
+
+
+            <div class="modal-header">
+
+                <h2 class="modal-title">
+                    Editar saldo
+                </h2>
+
+                <button
+                    class="close"
+                    onclick="cerrarSaldo()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <div class="edit-balance show">
+
+                <label
+                    class="client-label"
+                    for="balanceInput">
+
+                    Nuevo saldo
+
+                </label>
+
+                <br><br>
+
+                <input
+                    id="balanceInput"
+                    class="balance-input"
+                    type="number"
+                    min="0"
+                    step="1"
+                    value="188382">
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="btn btn-cancel"
+                    onclick="cerrarSaldo()">
+
+                    Cancelar
+
+                </button>
+
+                <button
+                    class="btn btn-save"
+                    onclick="guardarSaldo()">
+
+                    Guardar
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
          JAVASCRIPT
-    ======================================== -->
+    ===================================== -->
 
     <script>
+
+
+        /* =====================================
+           MOSTRAR DATOS CLIENTE
+        ===================================== */
+
+        function mostrarCliente() {
+
+            const modal =
+                document.getElementById("clientModal");
+
+            modal.classList.add("show");
+
+        }
+
+
+        /* =====================================
+           CERRAR DATOS CLIENTE
+        ===================================== */
+
+        function cerrarCliente() {
+
+            const modal =
+                document.getElementById("clientModal");
+
+            modal.classList.remove("show");
+
+        }
+
+
+        /* =====================================
+           CERRAR MODAL CLIENTE
+        ===================================== */
+
+        function cerrarModal(event) {
+
+            if (
+                event.target.id === "clientModal"
+            ) {
+
+                cerrarCliente();
+
+            }
+
+        }
+
+
+        /* =====================================
+           EDITAR SALDO
+        ===================================== */
+
+        function editarSaldo() {
+
+            const modal =
+                document.getElementById("balanceModal");
+
+            const saldo =
+                document
+                    .getElementById("saldo")
+                    .innerText
+                    .replace("COP", "")
+                    .replace(/,/g, "")
+                    .trim();
+
+            document.getElementById(
+                "balanceInput"
+            ).value = saldo;
+
+            modal.classList.add("show");
+
+        }
+
+
+        /* =====================================
+           GUARDAR SALDO
+        ===================================== */
+
+        function guardarSaldo() {
+
+            const input =
+                document.getElementById(
+                    "balanceInput"
+                );
+
+            const nuevoSaldo =
+                Number(input.value);
+
+
+            if (
+                isNaN(nuevoSaldo) ||
+                nuevoSaldo < 0
+            ) {
+
+                alert(
+                    "Introduce un saldo válido."
+                );
+
+                return;
+
+            }
+
+
+            const saldoFormateado =
+                nuevoSaldo.toLocaleString(
+                    "es-CO"
+                );
+
+
+            document.getElementById(
+                "saldo"
+            ).innerText =
+                "COP " + saldoFormateado;
+
+
+            cerrarSaldo();
+
+        }
+
+
+        /* =====================================
+           CERRAR MODAL SALDO
+        ===================================== */
+
+        function cerrarSaldo(event) {
+
+            const modal =
+                document.getElementById(
+                    "balanceModal"
+                );
+
+
+            if (
+                event &&
+                event.target &&
+                event.target.id !== "balanceModal"
+            ) {
+
+                return;
+
+            }
+
+
+            modal.classList.remove("show");
+
+        }
+
+
+        /* =====================================
+           BOTON PAGAR
+        ===================================== */
 
         function pagar() {
 
             alert(
-                "Aquí puedes conectar el botón con tu proceso de pago."
+                "Demo: aquí puedes conectar posteriormente tu proceso de pago."
             );
 
         }
 
+
+        /* =====================================
+           ESCAPE PARA CERRAR MODALES
+        ===================================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    cerrarCliente();
+
+                    cerrarSaldo();
+
+                }
+
+            }
+        );
+
     </script>
 
 </body>
+
 </html>
