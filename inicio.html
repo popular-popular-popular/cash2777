@@ -7,266 +7,648 @@
     <title>Ecredit Personalizado - MP</title>
 
     <style>
+        /* ========================================
+           RESET
+        ======================================== */
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
         }
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            min-height: 100vh;
-            color: #111;
-            background: #fff;
+            background: #ffffff;
+            color: #111111;
         }
 
+
+        /* ========================================
+           CONTENEDOR PRINCIPAL
+        ======================================== */
+
         .page {
+            width: 100%;
             min-height: 100vh;
+
             display: grid;
             grid-template-columns: 2fr 1fr;
         }
 
-        /* =========================
+
+        /* ========================================
            PANEL IZQUIERDO
-        ========================== */
+        ======================================== */
 
         .main {
             background: #ffffff;
-            padding: 70px 8%;
+            padding: 68px 25px 50px;
         }
 
         .content {
-            width: 535px;
-            max-width: 100%;
+            width: 100%;
+            max-width: 1060px;
             margin: 0 auto;
         }
 
-        h1 {
-            font-size: 32px;
+
+        /* ========================================
+           TITULO
+        ======================================== */
+
+        .title {
+            text-align: center;
+
+            font-size: 30px;
             font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 68px;
+
+            margin-bottom: 67px;
+
+            color: #111111;
         }
 
-        .intro {
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 32px;
-        }
 
-        .field-group {
-            margin-bottom: 27px;
-        }
+        /* ========================================
+           CERRAR SESION
+        ======================================== */
 
-        label {
-            display: block;
-            color: #29415a;
+        .logout {
+            display: inline-flex;
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 42px;
+
+            color: #0785c3;
+            text-decoration: none;
+
             font-size: 16px;
-            margin-bottom: 7px;
+            font-weight: 500;
         }
 
-        input {
-            width: 100%;
-            height: 46px;
-            padding: 0 14px;
-            border: 1px solid #c7d0d8;
-            border-radius: 9px;
-            outline: none;
-            font-size: 16px;
-            background: #fff;
+        .logout:hover {
+            text-decoration: underline;
         }
 
-        input:focus {
-            border-color: #79b9d9;
-            box-shadow: 0 0 0 3px rgba(121, 185, 217, 0.18);
+
+        /* Icono cerrar sesión */
+
+        .logout-icon {
+            width: 19px;
+            height: 19px;
+
+            position: relative;
+
+            display: inline-block;
         }
 
-        .privacy {
-            color: #66788b;
-            font-size: 16px;
-            line-height: 1.45;
-            margin-bottom: 25px;
+        .logout-icon::before {
+            content: "";
+
+            position: absolute;
+
+            left: 2px;
+            top: 3px;
+
+            width: 10px;
+            height: 12px;
+
+            border: 2px solid #0785c3;
+            border-right: none;
+
+            border-radius: 2px 0 0 2px;
         }
 
-        .privacy strong {
-            color: #526477;
+        .logout-icon::after {
+            content: "→";
+
+            position: absolute;
+
+            left: 7px;
+            top: -4px;
+
+            font-size: 19px;
+            font-weight: bold;
+
+            line-height: 19px;
+
+            background: #ffffff;
         }
 
-        .button-wrap {
+
+        /* ========================================
+           TABS
+        ======================================== */
+
+        .tabs {
             display: flex;
-            justify-content: center;
+
+            border-bottom: 1px solid #e0e4e7;
+
+            margin-bottom: 21px;
         }
 
-        button {
-            width: 224px;
-            height: 50px;
-            border: none;
-            border-radius: 9px;
-            background: #7dbada;
-            color: #fff;
+        .tab {
+            position: relative;
+
+            padding: 0 26px 13px;
+
             font-size: 15px;
+            font-weight: 600;
+
+            color: #9ba6b2;
+        }
+
+        .tab.active {
+            color: #111111;
+        }
+
+        .tab.active::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: -1px;
+
+            height: 2px;
+
+            background: #00a6e8;
+        }
+
+
+        /* ========================================
+           TARJETA
+        ======================================== */
+
+        .credit-card {
+            width: 100%;
+            min-height: 113px;
+
+            padding: 32px 26px;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1fr)
+                auto
+                224px;
+
+            align-items: center;
+
+            gap: 30px;
+
+            background: #ffffff;
+
+            border: 1px solid #d9dee3;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.12);
+        }
+
+
+        /* ========================================
+           INFORMACION DEL CREDITO
+        ======================================== */
+
+        .credit-info {
+            min-width: 0;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 13px;
+
+            font-size: 16px;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .label {
+            color: #66798b;
+
+            white-space: nowrap;
+        }
+
+        .value {
+            color: #111111;
+
             font-weight: 700;
-            cursor: pointer;
-            transition: 0.2s;
         }
 
-        button:hover {
-            background: #65aaca;
+
+        /* ========================================
+           REFERENCIA + OJO
+        ======================================== */
+
+        .reference {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
         }
 
-        /* =========================
-           PANEL DERECHO
-        ========================== */
+        .eye {
+            width: 17px;
+            height: 11px;
 
-        .side {
-            background: #b9e0f6;
-            min-height: 100vh;
-            padding: 58px 36px 34px;
+            display: inline-block;
 
+            position: relative;
+
+            border: 1.8px solid #222222;
+
+            border-radius: 80% 20% 80% 20%;
+
+            transform: rotate(-45deg);
+        }
+
+        .eye::after {
+            content: "";
+
+            position: absolute;
+
+            width: 4px;
+            height: 4px;
+
+            top: 2px;
+            left: 5px;
+
+            background: #222222;
+
+            border-radius: 50%;
+        }
+
+
+        /* ========================================
+           MONTO
+        ======================================== */
+
+        .amount {
+            min-width: 150px;
+
+            text-align: right;
+        }
+
+        .amount-main {
             display: flex;
-            flex-direction: column;
-        }
 
-        .side h2 {
-            font-size: 26px;
-            margin-bottom: 25px;
-        }
-
-        .side p {
-            max-width: 455px;
-            font-size: 17px;
-            line-height: 1.55;
-            color: #142333;
-        }
-
-        /* =========================
-           FOOTER
-        ========================== */
-
-        .side-footer {
-            margin-top: auto;
-
-            display: flex;
             align-items: center;
             justify-content: flex-end;
 
-            gap: 26px;
+            gap: 8px;
+
+            margin-bottom: 8px;
+
+            font-size: 16px;
+
+            font-weight: 700;
+        }
+
+        .minimum {
+            color: #9aa5b0;
+
+            font-size: 14px;
+
+            white-space: nowrap;
+        }
+
+
+        /* ========================================
+           ICONO EDITAR
+        ======================================== */
+
+        .edit-icon {
+            width: 16px;
+            height: 16px;
+
+            display: inline-block;
+
+            position: relative;
+
+            transform: rotate(-45deg);
+        }
+
+        .edit-icon::before {
+            content: "";
+
+            position: absolute;
+
+            width: 4px;
+            height: 15px;
+
+            top: 0;
+            left: 6px;
+
+            border: 2px solid #222222;
+
+            border-radius: 1px;
+        }
+
+
+        /* ========================================
+           BOTON PAGAR
+        ======================================== */
+
+        .pay-button {
+            width: 100%;
+            height: 42px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #1189c2;
+
+            color: #ffffff;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                transform 0.1s ease;
+        }
+
+        .pay-button:hover {
+            background: #087bad;
+        }
+
+        .pay-button:active {
+            transform: translateY(1px);
+        }
+
+
+        /* ========================================
+           PANEL DERECHO
+        ======================================== */
+
+        .sidebar {
+            min-height: 100vh;
+
+            background: #c5e8fa;
+
+            padding: 61px 36px 38px;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        /* ========================================
+           TITULO SIDEBAR
+        ======================================== */
+
+        .sidebar-title {
+            margin-bottom: 23px;
+
+            font-size: 25px;
+
+            line-height: 1.2;
+
+            font-weight: 700;
+
+            color: #111111;
+        }
+
+
+        /* ========================================
+           TEXTO SIDEBAR
+        ======================================== */
+
+        .sidebar-text {
+            max-width: 510px;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+            text-align: justify;
+
+            color: #111111;
+        }
+
+
+        /* ========================================
+           FOOTER SIDEBAR
+        ======================================== */
+
+        .sidebar-footer {
+            margin-top: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            gap: 28px;
+
+            color: #0e1d25;
 
             font-size: 13px;
         }
 
+
+        /* ========================================
+           LOGOS
+        ======================================== */
+
         .made-by {
             display: flex;
+
             align-items: center;
-            gap: 9px;
+
+            gap: 10px;
         }
 
-        .brand {
+        .logo-aval {
+            color: #28749d;
+
             font-weight: 800;
-            font-size: 12px;
+
+            letter-spacing: -1px;
         }
 
-        .brand .a {
-            color: #67a9cf;
+        .logo-red {
+            color: #cc2f36;
         }
 
-        .brand .p {
-            color: #ef7b31;
-        }
 
-        .brand .m {
-            color: #1d4662;
-        }
+        /* ========================================
+           IDIOMA
+        ======================================== */
 
         .language {
             display: flex;
+
             align-items: center;
-            gap: 8px;
-            white-space: nowrap;
+
+            gap: 9px;
         }
 
-        /* Icono chat */
+
+        /* ========================================
+           ICONO CHAT
+        ======================================== */
 
         .chat-icon {
             width: 19px;
-            height: 15px;
-            border: 1.8px solid #111;
-            border-radius: 5px;
+            height: 16px;
+
             position: relative;
+
+            border: 1.8px solid #10242d;
+
+            border-radius: 5px;
         }
 
         .chat-icon::after {
             content: "";
+
             position: absolute;
+
             right: 2px;
             bottom: -4px;
+
             width: 5px;
             height: 5px;
-            border-left: 1.8px solid #111;
-            transform: skew(-25deg);
+
+            border-left: 1.8px solid #10242d;
+            border-bottom: 1.8px solid #10242d;
+
+            background: #c5e8fa;
+
+            transform: skew(-20deg);
         }
 
-        /* Flecha */
+
+        /* ========================================
+           FLECHA IDIOMA
+        ======================================== */
 
         .chevron {
-            width: 9px;
-            height: 9px;
-            border-right: 2px solid #111;
-            border-bottom: 2px solid #111;
-            transform: rotate(45deg) translateY(-2px);
+            width: 8px;
+            height: 8px;
+
+            margin-left: 3px;
+
+            border-right: 1.8px solid #10242d;
+            border-bottom: 1.8px solid #10242d;
+
+            transform:
+                rotate(45deg)
+                translateY(-2px);
         }
 
-        /* =========================
-           RESPONSIVE
-        ========================== */
 
-        @media (max-width: 900px) {
+        /* ========================================
+           RESPONSIVE TABLET
+        ======================================== */
+
+        @media (max-width: 1000px) {
 
             .page {
                 grid-template-columns: 1fr;
             }
 
-            .main {
-                min-height: 650px;
-                padding: 50px 30px;
+            .sidebar {
+                min-height: 350px;
             }
 
-            .side {
-                min-height: 330px;
-                padding: 45px 30px 30px;
+            .credit-card {
+                grid-template-columns: 1fr;
             }
 
-            .side-footer {
-                margin-top: 70px;
+            .amount {
+                text-align: left;
+            }
+
+            .amount-main {
+                justify-content: flex-start;
+            }
+
+            .pay-button {
+                width: 100%;
             }
         }
 
-        @media (max-width: 520px) {
 
-            h1 {
-                font-size: 27px;
+        /* ========================================
+           RESPONSIVE MOVIL
+        ======================================== */
+
+        @media (max-width: 600px) {
+
+            .main {
+                padding: 40px 16px;
+            }
+
+            .title {
+                font-size: 24px;
+
                 margin-bottom: 45px;
             }
 
-            .intro {
-                font-size: 15px;
+            .logout {
+                margin-bottom: 35px;
             }
 
-            .privacy {
-                font-size: 15px;
+            .tabs {
+                overflow-x: auto;
             }
 
-            .side h2 {
+            .tab {
+                padding-left: 12px;
+                padding-right: 12px;
+
+                white-space: nowrap;
+            }
+
+            .credit-card {
+                padding: 24px 18px;
+
+                gap: 20px;
+            }
+
+            .info-row {
+                flex-wrap: wrap;
+            }
+
+            .sidebar {
+                min-height: 350px;
+
+                padding: 40px 24px;
+            }
+
+            .sidebar-title {
                 font-size: 23px;
             }
 
-            .side p {
-                font-size: 15px;
-            }
-
-            .side-footer {
+            .sidebar-footer {
                 justify-content: space-between;
-                gap: 10px;
+
+                gap: 12px;
             }
         }
     </style>
@@ -274,88 +656,194 @@
 
 <body>
 
+    <!-- ========================================
+         PAGINA PRINCIPAL
+    ========================================= -->
+
     <div class="page">
 
-        <!-- =========================
-             IZQUIERDA
-        ========================== -->
+
+        <!-- ====================================
+             PANEL IZQUIERDO
+        ===================================== -->
 
         <main class="main">
 
             <div class="content">
 
-                <h1>
+
+                <!-- TITULO -->
+
+                <h1 class="title">
                     Ecredit Personalizado - MP
                 </h1>
 
-                <p class="intro">
-                    Comience el proceso de pago, ingresando la siguiente información
-                </p>
 
-                <form>
+                <!-- CERRAR SESION -->
 
-                    <div class="field-group">
+                <a href="#" class="logout">
 
-                        <label for="referencia">
-                            Referencia <span>*</span>
-                        </label>
+                    <span
+                        class="logout-icon"
+                        aria-hidden="true">
+                    </span>
 
-                        <input
-                            type="text"
-                            id="referencia"
-                            name="referencia"
-                            autocomplete="off"
-                        >
+                    Cerrar sesión
+
+                </a>
+
+
+                <!-- TABS -->
+
+                <div class="tabs">
+
+                    <div class="tab active">
+                        Registros relacionados
+                    </div>
+
+                    <div class="tab">
+                        Historial de pago
+                    </div>
+
+                </div>
+
+
+                <!-- ====================================
+                     TARJETA DEL CREDITO
+                ===================================== -->
+
+                <section class="credit-card">
+
+
+                    <!-- INFORMACION -->
+
+                    <div class="credit-info">
+
+
+                        <!-- REFERENCIA -->
+
+                        <div class="info-row">
+
+                            <span class="label">
+                                Referencia
+                            </span>
+
+                            <span class="value reference">
+
+                                402026430
+
+                                <span
+                                    class="eye"
+                                    aria-hidden="true">
+                                </span>
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- DESCRIPCION -->
+
+                        <div class="info-row">
+
+                            <span class="label">
+                                Descripción
+                            </span>
+
+                            <span class="value">
+                                Pago de crédito 402026430
+                            </span>
+
+                        </div>
 
                     </div>
 
-                    <p class="privacy">
-                        Al continuar, acepto las políticas aplicables para el
-                        tratamiento de mis datos personales según la jurisdicción
-                        local del responsable y de
-                        <strong>AvalPay</strong>
-                        en su calidad de encargado.
-                    </p>
 
-                    <div class="button-wrap">
+                    <!-- ====================================
+                         MONTO
+                    ===================================== -->
 
-                        <button type="button" onclick="ingresar()">
-                            Ingresar
-                        </button>
+                    <div class="amount">
+
+                        <div class="amount-main">
+
+                            <span>
+                                COP 188,382
+                            </span>
+
+                            <span
+                                class="edit-icon"
+                                aria-hidden="true">
+                            </span>
+
+                        </div>
+
+                        <div class="minimum">
+                            Pago mínimo&nbsp;&nbsp; COP 2,000
+                        </div>
 
                     </div>
 
-                </form>
+
+                    <!-- ====================================
+                         BOTON PAGAR
+                    ===================================== -->
+
+                    <button
+                        type="button"
+                        class="pay-button"
+                        onclick="pagar()">
+
+                        Pagar
+
+                    </button>
+
+
+                </section>
 
             </div>
 
         </main>
 
 
-        <!-- =========================
-             DERECHA
-        ========================== -->
+        <!-- ====================================
+             PANEL DERECHO
+        ===================================== -->
 
-        <aside class="side">
+        <aside class="sidebar">
+
+
+            <!-- TITULO -->
 
             <div>
 
-                <h2>
+                <h2 class="sidebar-title">
                     Pagos electrónicos
                 </h2>
 
-                <p>
-                    Desde su casa, oficina o cualquier lugar, pague de forma
-                    segura; a través de nuestro sistema de pago. Use nuestro
-                    servicio las 24 horas y los 7 días de la semana
+
+                <!-- TEXTO -->
+
+                <p class="sidebar-text">
+
+                    Desde su casa, oficina o cualquier lugar,
+                    pague de forma segura a través de nuestro
+                    sistema de pago. Use nuestro servicio las
+                    24 horas y los 7 días de la semana
+
                 </p>
 
             </div>
 
 
-            <!-- FOOTER -->
+            <!-- ====================================
+                 FOOTER
+            ===================================== -->
 
-            <footer class="side-footer">
+            <footer class="sidebar-footer">
+
+
+                <!-- HECHO POR -->
 
                 <div class="made-by">
 
@@ -363,34 +851,37 @@
                         Hecho por
                     </span>
 
-                    <span class="brand">
+                    <span class="logo-aval">
+                        AvalPay
+                    </span>
 
-                        <span class="a">
-                            Aval
+                    <span class="logo-aval">
+                        <span class="logo-red">
+                            V
                         </span>
-
-                        <span class="p">
-                            Pay
-                        </span>
-
-                        <span class="m">
-                            | MOVIL
-                        </span>
-
+                        AL
                     </span>
 
                 </div>
 
 
+                <!-- IDIOMA -->
+
                 <div class="language">
 
-                    <span class="chat-icon"></span>
+                    <span
+                        class="chat-icon"
+                        aria-hidden="true">
+                    </span>
 
                     <span>
                         Español
                     </span>
 
-                    <span class="chevron"></span>
+                    <span
+                        class="chevron"
+                        aria-hidden="true">
+                    </span>
 
                 </div>
 
@@ -401,32 +892,18 @@
     </div>
 
 
+    <!-- ========================================
+         JAVASCRIPT
+    ======================================== -->
+
     <script>
 
-        function ingresar() {
+        function pagar() {
 
-            const referencia =
-                document.getElementById("referencia").value.trim();
+            alert(
+                "Aquí puedes conectar el botón con tu proceso de pago."
+            );
 
-            if (referencia === "") {
-
-                alert("Por favor ingrese la referencia.");
-
-                return;
-            }
-
-            /*
-             * Aquí puedes colocar la URL a la que
-             * quieres enviar al usuario.
-             *
-             * Ejemplo:
-             *
-             * window.location.href =
-             * "pago.html?referencia=" +
-             * encodeURIComponent(referencia);
-             */
-
-            alert("Referencia ingresada: " + referencia);
         }
 
     </script>
