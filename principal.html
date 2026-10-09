@@ -54,15 +54,20 @@
     .btn-outline { color: white; border: 1px solid rgba(255,255,255,.55); background: transparent; }
     .btn-outline:hover { background: rgba(255,255,255,.12); }
     
-    /* HERO CON IMAGEN DE FONDO */
+    /* HERO CON LA IMAGEN fodo.webp */
     .hero {
-      position: relative; isolation: isolate; min-height: 495px; display: flex; align-items: center;
-      padding: 70px 6.5%; overflow: hidden;
-      /* Aquí está integrada la imagen de fondo */
-      background: linear-gradient(90deg,rgba(20,23,23,.83) 0%,rgba(28,28,25,.67) 48%,rgba(24,25,23,.43) 100%),
-                  url('pago-movil.jpg'); /* <-- Asegúrate de que el nombre coincida con tu imagen */
-      background-size: cover;
-      background-position: center;
+      position: relative; 
+      isolation: isolate; 
+      min-height: 495px; 
+      display: flex; 
+      align-items: center;
+      padding: 70px 6.5%; 
+      overflow: hidden;
+      /* Aquí está integrada tu imagen fodo.webp con una capa oscura para legibilidad */
+      background: linear-gradient(90deg, rgba(20,23,23,.85) 0%, rgba(28,28,25,.65) 48%, rgba(24,25,23,.40) 100%),
+                  url('fodo.webp'); 
+      background-size: cover;       /* Para que la imagen cubra todo el espacio */
+      background-position: center;  /* Para que la imagen se centre */
       background-repeat: no-repeat;
     }
     .hero::before {
@@ -141,7 +146,7 @@
     .help-banner p { color: var(--muted); font-size: 11px; }
     .help-banner .btn { flex-shrink: 0; }
 
-    /* FOOTER PRINCIPAL (NUEVO) */
+    /* FOOTER PRINCIPAL */
     .main-footer {
       background-color: #1a2b4c; /* Azul oscuro similar a la captura */
       color: #ffffff;
@@ -334,7 +339,7 @@
   </header>
 
   <main>
-    <!-- HERO CON LA IMAGEN DE FONDO -->
+    <!-- HERO CON LA IMAGEN fodo.webp -->
     <section class="hero" id="nosotros">
       <div class="hero-content">
         <span class="eyebrow">Canales Oficiales</span>
@@ -430,7 +435,7 @@
     </section>
   </main>
 
-  <!-- FOOTER PRINCIPAL (Basado en tu captura de pantalla) -->
+  <!-- FOOTER PRINCIPAL -->
   <footer class="main-footer">
     <div class="footer-grid">
       <!-- Columna 1: Logo y descripción -->
