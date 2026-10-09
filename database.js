@@ -30,16 +30,16 @@ const Database = (() => {
 
     const registros = [
         {
-            referencia: "DEMO-402026455",
+            referencia: "402026455",
             descripcion: "Registro de demostración",
-            nombre: "Usuario de prueba",
-            documento: "DOC-000000 (ficticio)",
-            correo: "usuario.demo@example.com",
-            total: 88246,
+            nombre: "JESUS DAVID LECHUGA GOMEZ",
+            documento: "CC 8650231",
+            correo: "Jesusdavidlechuga1@gmail.com",
+            total:  88246,
             minimo: 2000,
             estado: "Declinado",
             fechaGeneracion: "2026-10-07 19:00:00",
-            fechaVencimiento: "2026-10-14 19:00:00"
+            fechaVencimiento: "2026-10-07 19:00:00"
         },
         {
             referencia: "DEMO-402026454",
