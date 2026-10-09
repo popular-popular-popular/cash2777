@@ -258,20 +258,49 @@
 
             .page {
                 grid-template-columns: 1fr;
+                /* Cambiamos la altura para que el panel izquierdo domine */
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
             }
 
             .main {
-                min-height: 650px;
+                flex: 1; /* Toma todo el espacio disponible */
                 padding: 50px 30px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center; /* Centra el contenido verticalmente */
+            }
+
+            .content {
+                width: 100%;
             }
 
             .side {
-                min-height: 330px;
-                padding: 45px 30px 30px;
+                /* Convertimos el panel derecho en una franja inferior */
+                min-height: auto;
+                padding: 35px 25px 25px;
+                flex-direction: column;
+                justify-content: flex-end;
+            }
+
+            /* Ocultamos o hacemos más pequeño el texto del panel azul en móvil */
+            .side h2 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+
+            .side p {
+                font-size: 14px;
+                line-height: 1.4;
+                margin-bottom: 20px;
             }
 
             .side-footer {
-                margin-top: 70px;
+                margin-top: 0;
+                justify-content: space-between; /* Alinea a los extremos como en la captura */
+                gap: 15px;
+                font-size: 11px;
             }
         }
 
@@ -290,17 +319,30 @@
                 font-size: 15px;
             }
 
+            /* Ajustes finos para el panel inferior en móviles muy pequeños */
+            .side {
+                padding: 25px 20px 20px;
+            }
+
             .side h2 {
-                font-size: 23px;
+                font-size: 18px;
             }
 
             .side p {
-                font-size: 15px;
+                font-size: 13px;
             }
 
             .side-footer {
+                flex-direction: row; /* Mantener en fila */
                 justify-content: space-between;
-                gap: 10px;
+            }
+
+            .made-by {
+                font-size: 10px;
+            }
+
+            .language {
+                font-size: 10px;
             }
         }
     </style>
@@ -459,157 +501,86 @@
     ====================================================== -->
 
     <script>
+    "use strict";
 
-        const formulario =
-            document.getElementById("referenciaForm");
+    const formulario      = document.getElementById("referenciaForm");
+    const campoReferencia = document.getElementById("referencia");
+    const mensajeError    = document.getElementById("errorReferencia");
+    const botonIngresar   = document.getElementById("btnIngresar");
 
-        const campoReferencia =
-            document.getElementById("referencia");
+    /* =====================================================
+       INGRESAR
+    ====================================================== */
 
-        const mensajeError =
-            document.getElementById("errorReferencia");
+    formulario.addEventListener("submit", function (event) {
 
-        const botonIngresar =
-            document.getElementById("btnIngresar");
+        event.preventDefault();
 
+        const referencia = campoReferencia.value.trim().toUpperCase();
 
-        /*
-         * =====================================================
-         * INGRESAR
-         * =====================================================
-         */
+        /* Limpiar errores */
+        campoReferencia.classList.remove("input-error");
+        mensajeError.classList.remove("show");
+        mensajeError.textContent = "";
 
-        formulario.addEventListener("submit", function(event) {
+        /* Validar campo vacío */
+        if (referencia === "") {
+            campoReferencia.classList.add("input-error");
+            mensajeError.textContent = "Por favor ingrese la referencia.";
+            mensajeError.classList.add("show");
+            campoReferencia.focus();
+            return;
+        }
 
-            event.preventDefault();
+        /* Validar que database.js esté cargado */
+        if (
+            typeof Database === "undefined" ||
+            typeof Database.buscarPorReferencia !== "function"
+        ) {
+            campoReferencia.classList.add("input-error");
+            mensajeError.textContent =
+                "No se pudo cargar la base de datos. Recargue la página.";
+            mensajeError.classList.add("show");
+            return;
+        }
 
+        /* Buscar en database.js */
+        const registro = Database.buscarPorReferencia(referencia);
 
-            /*
-             * Obtener referencia
-             */
+        /* Referencia no encontrada */
+        if (!registro) {
+            campoReferencia.classList.add("input-error");
+            mensajeError.textContent =
+                "La referencia ingresada no fue encontrada.";
+            mensajeError.classList.add("show");
+            campoReferencia.focus();
+            return;
+        }
 
-            const referencia =
-                campoReferencia.value
-                    .trim()
-                    .toUpperCase();
+        /* Guardar datos para la siguiente pantalla */
+        sessionStorage.setItem("referenciaActual", registro.referencia);
+        sessionStorage.setItem("registroActual", JSON.stringify(registro));
 
+        /* Evitar doble clic */
+        botonIngresar.disabled = true;
+        botonIngresar.textContent = "Cargando...";
 
-            /*
-             * Limpiar errores
-             */
-
-            campoReferencia.classList.remove("input-error");
-
-            mensajeError.classList.remove("show");
-
-            mensajeError.textContent = "";
-
-
-            /*
-             * Validar campo vacío
-             */
-
-            if (referencia === "") {
-
-                campoReferencia.classList.add("input-error");
-
-                mensajeError.textContent =
-                    "Por favor ingrese la referencia.";
-
-                mensajeError.classList.add("show");
-
-                campoReferencia.focus();
-
-                return;
-            }
-
-
-            /*
-             * =================================================
-             * CONSULTAR JS.DATABASE
-             * =================================================
-             */
-
-            const registro =
-                Database.buscarPorReferencia(referencia);
+        /* Ir al portal de pagos */
+        window.location.href =
+            "portal.html?referencia=" +
+            encodeURIComponent(registro.referencia);
+    });
 
 
-            /*
-             * =================================================
-             * REFERENCIA NO ENCONTRADA
-             * =================================================
-             */
+    /* =====================================================
+       LIMPIAR ERROR AL ESCRIBIR
+    ====================================================== */
 
-            if (!registro) {
-
-                campoReferencia.classList.add("input-error");
-
-                mensajeError.textContent =
-                    "La referencia ingresada no fue encontrada.";
-
-                mensajeError.classList.add("show");
-
-                campoReferencia.focus();
-
-                return;
-            }
-
-
-            /*
-             * =================================================
-             * REFERENCIA ENCONTRADA
-             * =================================================
-             */
-
-            sessionStorage.setItem(
-                "referenciaActual",
-                registro.referencia
-            );
-
-
-            /*
-             * Evitar doble clic
-             */
-
-            botonIngresar.disabled = true;
-
-            botonIngresar.textContent =
-                "Cargando...";
-
-
-            /*
-             * =================================================
-             * IR AL DETALLE
-             * =================================================
-             *
-             * La referencia viaja como parámetro.
-             */
-
-            window.location.href =
-                "detalle.html?referencia=" +
-                encodeURIComponent(registro.referencia);
-
-        });
-
-
-        /*
-         * =====================================================
-         * LIMPIAR ERROR AL ESCRIBIR
-         * =====================================================
-         */
-
-        campoReferencia.addEventListener(
-            "input",
-            function() {
-
-                campoReferencia.classList.remove("input-error");
-
-                mensajeError.classList.remove("show");
-
-                mensajeError.textContent = "";
-
-            }
-        );
+    campoReferencia.addEventListener("input", function () {
+        campoReferencia.classList.remove("input-error");
+        mensajeError.classList.remove("show");
+        mensajeError.textContent = "";
+    });
 
     </script>
 
